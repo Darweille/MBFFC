@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html ondragover="DrapOver(event)" ondrop="DropFile(event)">
 <head>
 <meta charset="UTF-8">
@@ -150,37 +150,37 @@ a:hover
 	box-shadow: 1px 1px 8px 1px #000000;
 }
 
+#DivIDBottom
+{
+	border-top : 5px groove #A68F75;
+	margin: 50px auto auto auto;
+}
+
 .PClassBottom
 {
 	font-weight: bold;
-	color: #7A5F4B;
-	text-shadow: 0px 0px 8px #ffffff;
+	color: #A68F75;
+	text-shadow: 0px 0px 3px #000000;
 }
 
 .PClassBottom a
 {
-	color: #7A5F4B;
-	text-shadow: 0px 0px 8px #ffffff;
+	color: #A68F75;
+	text-shadow: 0px 0px 3px #000000;
+	text-decoration: none;
 }
 
 .PClassBottom a:hover
 {
-	color: #ffffff;
+	color: #CBB091;
 	text-decoration: none;
-}
-
-#SpanIDBottom
-{
-	border-top :1.5mm double #A68F75;
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
 }
 </style>
 
 <script>
-var InputFile = null;
+var InputFile, IntervalTimer;
 var ConvertAgain = false;
+var StuckTime = 0;
 
 //頁面讀取完成時
 window.onload = function()
@@ -238,7 +238,7 @@ function FontSetChange()
 function Initialization()
 {
 	document.getElementById("PIDFileSelectArea").innerHTML = "點擊此處選取檔案，或將檔案拖曳至頁面上即開始轉換";
-	document.getElementById("PIDFileSelectArea").style.color = "#ffffff";
+	document.getElementById("PIDFileSelectArea").style.color = "rgb(255,255,255)";
 	document.getElementById("DivIDOutputArea").style.display = "none";
 };
 
@@ -250,22 +250,23 @@ function FileCheck()
 	if (InputFile.name.substr(InputFile.name.lastIndexOf(".")) != ".fnt") //假如檔案不是FNT檔
 	{
 		InputFile = null; //清空檔案
-		document.getElementById("PIDFileSelectArea").innerHTML = "檔案副檔名必須為 .fnt";
-		document.getElementById("PIDFileSelectArea").style.color = "#F24848";
+		document.getElementById("PIDFileSelectArea").innerHTML = "檔案類型不符合";
+		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
+		FontColorEffects();
 	}
 	else if (InputFile.size > 10485760) //假如檔案大小超過 10MB
 	{
 		InputFile = null;
 		document.getElementById("PIDFileSelectArea").innerHTML = "檔案大小不能超過 10MB";
-		document.getElementById("PIDFileSelectArea").style.color = "#EA4E4E";
+		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
+		FontColorEffects();
 	}
 	else
 	{		
 		//使用FileReader以Text格式解析輸入的檔案
 		var FNTReader = new FileReader();
 		
-		document.getElementById("PIDFileSelectArea").innerHTML = "正在讀取檔案…";
-		document.getElementById("PIDFileSelectArea").style.color = "#ffffff";
+		document.getElementById("PIDFileSelectArea").innerHTML = "正在讀取檔案";
 		
 		FNTReader.readAsText(InputFile);
 		FNTReader.onload = function()
@@ -281,8 +282,7 @@ function Convert()
 {
 	Initialization();
 	
-	document.getElementById("PIDFileSelectArea").innerHTML = "正在解析檔案…";
-	document.getElementById("PIDFileSelectArea").style.color = "#ffffff";
+	document.getElementById("PIDFileSelectArea").innerHTML = "正在解析檔案";
 	
 	var FileError = false;
 	
@@ -299,9 +299,8 @@ function Convert()
 		FileError = true;
 	}
 	
-	document.getElementById("PIDFileSelectArea").innerHTML = "正在轉換…";
-	document.getElementById("PIDFileSelectArea").style.color = "#ffffff";
-
+	document.getElementById("PIDFileSelectArea").innerHTML = "正在轉換";
+	
 	var OutputXMLCharacter = "";
 	
 	var InputFNTChar = ParserResult.getElementsByTagName("char");
@@ -341,7 +340,8 @@ function Convert()
 	if (FileError == true)
 	{
 		document.getElementById("PIDFileSelectArea").innerHTML = "檔案格式不相容";
-		document.getElementById("PIDFileSelectArea").style.color = "#F24848";
+		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
+		FontColorEffects();
 	}
 	else
 	{
@@ -377,13 +377,11 @@ function Convert()
 	
 		if (ConvertAgain == true)
 		{
-			document.getElementById("PIDFileSelectArea").innerHTML = "重新轉換完畢！";
-			document.getElementById("PIDFileSelectArea").style.color = "#75d375";
+			document.getElementById("PIDFileSelectArea").innerHTML = "重新轉換完畢";
 		}
 		else
 		{
-			document.getElementById("PIDFileSelectArea").innerHTML = "轉換完畢！";
-			document.getElementById("PIDFileSelectArea").style.color = "#75d375";
+			document.getElementById("PIDFileSelectArea").innerHTML = "轉換完畢";
 		}
 		
 		ConvertAgain = false;
@@ -391,8 +389,14 @@ function Convert()
 		//字型調整的輸入有誤
 		if (FontSettingError > 0)
 		{
-			document.getElementById("PIDFileSelectArea").innerHTML += "字型調整的設定值無效，已自動改用預設值。";
-			document.getElementById("PIDFileSelectArea").style.color = "#C7C75B";
+			document.getElementById("PIDFileSelectArea").innerHTML += "<br />字型調整的設定值無效，已自動改用預設值。";
+			document.getElementById("PIDFileSelectArea").style.color = "rgb(255,255,0)";
+			FontColorEffects();
+		}
+		else
+		{
+			document.getElementById("PIDFileSelectArea").style.color = "rgb(100,200,100)";
+			FontColorEffects();
 		}
 		
 		//顯示轉換結果
@@ -405,6 +409,49 @@ function Convert()
 		}
 	}
 };
+
+//訊息文字顏色漸變效果
+function FontColorEffects()
+{
+	StuckTime = 0;
+	clearInterval(IntervalTimer);
+	IntervalTimer = setInterval(FontColorToWhite, 50);
+}
+
+//訊息文字顏色逐漸白化
+function FontColorToWhite()
+{
+	if (StuckTime > 40)
+	{
+		//取得文字的顏色數據
+		var FontColorData = document.getElementById("PIDFileSelectArea").style.color.replace("rgb","").replace("(","").replace(")","").split(",");
+		var FontColorR = FontColorData[0];
+		var FontColorG = FontColorData[1];
+		var FontColorB = FontColorData[2];
+				
+		if (FontColorR < 255) { FontColorR = Number(FontColorR) + 4; }
+		if (FontColorG < 255) { FontColorG = Number(FontColorG) + 4; }
+		if (FontColorB < 255) { FontColorB = Number(FontColorB) + 4; }
+		
+		//防止溢出
+		if (FontColorR > 255) { FontColorR = 255; }
+		if (FontColorG > 255) { FontColorG = 255; }
+		if (FontColorB > 255) { FontColorB = 255; }
+		
+		var FontColorNew = "rgba(" + FontColorR + "," + FontColorG + "," + FontColorB + ", 1)";
+		
+		document.getElementById("PIDFileSelectArea").style.color = FontColorNew;
+	}
+	else
+	{
+		StuckTime += 1;
+	}
+	
+	if (FontColorR == 255 && FontColorG == 255 && FontColorB == 255)
+	{
+		clearInterval(IntervalTimer);
+	}
+}
 
 //複製內容
 function CopyText()
@@ -462,8 +509,10 @@ function SaveFile(FileName)
 	</div>
 </div>
 
-<p class="PClassBottom" style="margin: 60px auto 10px auto;"><span id="SpanIDBottom">This tool is modified from: <a href="https://bitbucket.org/Swyter/swyter.bitbucket.org/src/f5cb39d1010a5a388f8635a8cd33b29780aef324/index.html?at=default&amp;fileviewer=file-view-default" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a></span></p>
-<p class="PClassBottom">Last Update: 2020/11/19 by <a href="mailto:wimitsuhide@gmail.com">Darweille</a></p>
+<div id="DivIDBottom">
+	<p class="PClassBottom">This tool is modified from: <a href="https://bitbucket.org/Swyter/swyter.bitbucket.org/src/f5cb39d1010a5a388f8635a8cd33b29780aef324/index.html?at=default&amp;fileviewer=file-view-default" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a></p>
+	<p class="PClassBottom">Last Update: 2020/11/19 by <a href="mailto:wimitsuhide@gmail.com">Darweille</a></p>
+</div>
 
 <textarea id="TextareaIDInput" name="TextareaNameInput" cols="1" rows="1" onchange="Convert()" readonly="readonly" hidden="hidden" style="display: none"></textarea>
 </body>
