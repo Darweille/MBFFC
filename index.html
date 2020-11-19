@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+<html ondragover="DrapOver(event)" ondrop="DropFile(event)">
+<head>
+<meta charset="UTF-8">
+<title>Darweille's MnB Bitmap Font File Converter</title>
+<style>
+body
+{
+	text-align: center;
+	background-color: #7A5F4B;
+	color: #ffffff;
+	text-shadow: 1px 1px 2px #000000;
+}
+
+a, a:visited, a:active
+{
+	color: #ffffff;
+}
+
+a:hover
+{
+	color: #CBCBCB;
+}
+
+#PIDTitle
+{
+	font-size: 150%;
+	color: #ffffff;
+	text-shadow: 0px 0px 10px #ffffff;
+	margin: 25px auto 25px auto;
+}
+
+#PIDTitle:hover
+{
+	text-shadow: 0px 0px 20px #ffffff;
+}
+
+#DivFileSelectArea
+{
+	width: 600px;
+	margin: 35px auto 35px auto;
+	border: dashed 3px #3C2513;
+	border-radius: 24px;
+	background: radial-gradient(ellipse at center, #B79D80, #7A5F4B);
+}
+
+#DivFileSelectArea:hover
+{
+	border-radius: 32px;
+	background: radial-gradient(ellipse at center, #C1A88C, #8B6F59);
+}
+
+#DivFileSelectArea:active
+{
+	border-radius: 64px;
+	background: radial-gradient(circle at center, #C1A88C, #8B6F59);
+}
+
+#PIDFileSelectArea
+{
+	font-size: 125%;
+	padding: 15px;
+}
+
+#DivIDFontSetting
+{
+	margin: 35px auto 35px auto;
+}
+
+.SpanClassFontOptions
+{
+	color: #ffffff;
+	padding: 15px;
+	font-size: 125%;
+	border-radius: 12px 12px 12px 12px;
+}
+
+.SpanClassFontOptions:hover
+{
+	background-color: #69503D;
+}
+
+.InputClassFontOptions
+{
+	color: #ffffff;
+	width: 55px;
+	height: 30px;
+	font-size: 100%;
+	background-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-top-color: transparent;
+	border-bottom-color: #000000;
+	outline: none;
+}
+
+#DivIDOutputArea
+{
+	display: none;
+}
+
+#TextareaIDOutput
+{
+	font-size: 125%;
+	border: 2px #000000;
+	border-radius: 4px;
+	background-color: #664F3E;
+	color: #ffffff;
+	box-shadow: 1px 1px 8px 1px #000000;
+}
+
+#DivIDButton
+{
+	margin: 20px auto -15px auto;
+}
+
+.InputClassButton
+{
+	outline: none;
+	font-weight: bold;
+	font-size: 125%;
+	width: 160px;
+	height: 50px;
+	border-radius: 12px;
+	background: -webkit-linear-gradient(left top, #D3C4B8, #ffffff);
+	background: -o-linear-gradient(left top, #D3C4B8, #ffffff);
+	background: -moz-linear-gradient(left top, #D3C4B8, #ffffff);
+	background: linear-gradient(to left top, #D3C4B8, #ffffff);
+	box-shadow: 2px 2px 2px 2px #2D2114;
+	text-shadow: 1px 1px 1px #DFDFDF;
+}
+
+.InputClassButton:hover
+{
+	text-shadow: 0px 0px 6px #ffffff;
+	background: -webkit-linear-gradient(left top, #ffffff, #F3ECE7);
+	background: -o-linear-gradient(left top, #ffffff, #F3ECE7);
+	background: -moz-linear-gradient(left top, #ffffff, #F3ECE7);
+	background: linear-gradient(to left top, #ffffff, #F3ECE7);
+}
+
+.InputClassButton:active
+{
+	color: #ffffff;
+	text-decoration: none;
+	position: relative;
+	top: 1px;
+	left: 1px;
+	text-shadow: 0px 0px 6px #A5A5A5;
+	box-shadow: 1px 1px 8px 1px #000000;
+}
+
+.PClassBottom
+{
+	font-weight: bold;
+	color: #7A5F4B;
+	text-shadow: 0px 0px 8px #ffffff;
+}
+
+.PClassBottom a
+{
+	color: #7A5F4B;
+	text-shadow: 0px 0px 8px #ffffff;
+}
+
+.PClassBottom a:hover
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#SpanIDBottom
+{
+	border-top :1.5mm double #A68F75;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+</style>
+
+<script>
+var InputFile = null;
+var ConvertAgain = false;
+
+//頁面讀取完成時
+window.onload = function()
+{
+	Initialization();
+}
+
+//進行拖曳時的動作
+function DrapOver(DragOverFile)
+{
+	DragOverFile.preventDefault(); //停止拖曳後所執行的事件
+};
+
+//拖曳檔案後的動作
+function DropFile(DragOverFile)
+{
+	DragOverFile.preventDefault();
+	var InputFileTemp = DragOverFile.dataTransfer.files[0]; //將拖曳的檔案先暫存
+	if (InputFileTemp != null)
+	{
+		InputFile = InputFileTemp;
+		FileCheck();
+	}
+};
+
+//選取檔案後的動作
+function SelectFile()
+{
+	var InputFileTemp = event.target.files[0]; //將選取的檔案先暫存
+	if (InputFileTemp != null)
+	{
+		InputFile = InputFileTemp;
+		FileCheck();
+	}
+};
+
+//當字型調整數值有變動的動作
+function FontSetChange()
+{
+	var FontSizeSet = document.getElementById("InputFontOptionsSize").value; //字型大小設定值
+	
+	if (FontSizeSet != "" && FontSizeSet < 1)
+	{
+		document.getElementById("InputFontOptionsSize").value = 1; //使字型大小始終大於1
+	}
+	
+	if (InputFile != null)
+	{
+		ConvertAgain = true;
+		Convert();
+	}
+}
+
+//重置為初始狀態
+function Initialization()
+{
+	document.getElementById("PIDFileSelectArea").innerHTML = "點擊此處選取檔案，或將檔案拖曳至頁面上即開始轉換";
+	document.getElementById("PIDFileSelectArea").style.color = "#ffffff";
+	document.getElementById("DivIDOutputArea").style.display = "none";
+};
+
+//檢查檔案
+function FileCheck()
+{
+	Initialization();
+		
+	if (InputFile.name.substr(InputFile.name.lastIndexOf(".")) != ".fnt") //假如檔案不是FNT檔
+	{
+		InputFile = null; //清空檔案
+		document.getElementById("PIDFileSelectArea").innerHTML = "檔案副檔名必須為 .fnt";
+		document.getElementById("PIDFileSelectArea").style.color = "#F24848";
+	}
+	else if (InputFile.size > 10485760) //假如檔案大小超過 10MB
+	{
+		InputFile = null;
+		document.getElementById("PIDFileSelectArea").innerHTML = "檔案大小不能超過 10MB";
+		document.getElementById("PIDFileSelectArea").style.color = "#EA4E4E";
+	}
+	else
+	{		
+		//使用FileReader以Text格式解析輸入的檔案
+		var FNTReader = new FileReader();
+		
+		document.getElementById("PIDFileSelectArea").innerHTML = "正在讀取檔案…";
+		document.getElementById("PIDFileSelectArea").style.color = "#ffffff";
+		
+		FNTReader.readAsText(InputFile);
+		FNTReader.onload = function()
+		{
+			document.getElementById("TextareaIDInput").value = this.result; //將解析內容儲存到TextareaIDInput
+			Convert();
+		}
+	}
+};
+
+//轉換程式
+function Convert()
+{
+	Initialization();
+	
+	document.getElementById("PIDFileSelectArea").innerHTML = "正在解析檔案…";
+	document.getElementById("PIDFileSelectArea").style.color = "#ffffff";
+	
+	var FileError = false;
+	
+	//使用DOMParser以XML格式解析內容
+	var Parser = new DOMParser();
+	var ParserData = document.getElementById("TextareaIDInput").value;
+	
+	try
+	{
+		var ParserResult = Parser.parseFromString(ParserData, "text/xml");
+	}
+	catch (e)
+	{
+		FileError = true;
+	}
+	
+	document.getElementById("PIDFileSelectArea").innerHTML = "正在轉換…";
+	document.getElementById("PIDFileSelectArea").style.color = "#ffffff";
+
+	var OutputXMLCharacter = "";
+	
+	var InputFNTChar = ParserResult.getElementsByTagName("char");
+	var InputFNTInfo = ParserResult.getElementsByTagName("info")[0];
+	var InputFNTCommon = ParserResult.getElementsByTagName("common")[0];
+	
+	//字型調整
+	var FontSettingError = 0; //用於判斷字型設定是否有誤
+	var FontSizeSet = document.getElementById("InputFontOptionsSize").value; //字型大小設定值
+	var FontSpacingSet = document.getElementById("InputFontOptionsSpacing").value; //字型間距設定值
+	var FontVerticalOffsetSet = document.getElementById("InputFontOptionsVerticalOffset").value; //垂直位移設定值
+	
+	try
+	{
+		var FontSizeOutput = InputFNTInfo.attributes["size"].value; //字型大小預設值
+	}
+	catch (e)
+	{
+		FileError = true;
+	}
+		
+	var FontSpacingOutput = 0;
+	var FontVerticalOffsetOutput = 0;
+		
+	//字型大小的數值結果
+	if (FontSizeSet > 0) { FontSizeOutput = FontSizeSet; }
+	else if (FontSizeSet != "") { FontSettingError += 1; }
+		
+	//字型間距的數值結果
+	if (FontSpacingSet >= 0 || FontSpacingSet < 0) { FontSpacingOutput = FontSpacingSet; }
+	else if (FontSpacingSet != "") { FontSettingError += 1; }
+		
+	//垂直位移的數值結果
+	if (FontVerticalOffsetSet >= 0 || FontVerticalOffsetSet < 0) { FontVerticalOffsetOutput = FontVerticalOffsetSet; }
+	else if (FontVerticalOffsetSet != "") { FontSettingError += 1; }
+		
+	if (FileError == true)
+	{
+		document.getElementById("PIDFileSelectArea").innerHTML = "檔案格式不相容";
+		document.getElementById("PIDFileSelectArea").style.color = "#F24848";
+	}
+	else
+	{
+		//轉換char的格式
+		for (obj in InputFNTChar)
+		{
+			if (typeof(InputFNTChar[obj]) == "object")
+			{
+				var char_code = InputFNTChar[obj].attributes["id"].value;
+				var page = InputFNTChar[obj].attributes["page"].value;
+				var u = InputFNTChar[obj].attributes["x"].value;
+				var v = InputFNTChar[obj].attributes["y"].value;
+				var w = (InputFNTChar[obj].attributes["x"].value * 1) + (InputFNTChar[obj].attributes["width"].value * 1);
+				var h = (InputFNTChar[obj].attributes["y"].value * 1) + (InputFNTChar[obj].attributes["height"].value * 1);
+				var preshift = InputFNTChar[obj].attributes["xoffset"].value;
+				var base = (+InputFNTCommon.attributes["base"].value);
+				var spac = (+InputFNTInfo.attributes["spacing"].value.split(",")[0] * 2)
+				var yoff = (+InputFNTChar[obj].attributes["yoffset"].value);
+				var yadjust = (-yoff) + (base-spac);
+				var postshift = (+InputFNTChar[obj].attributes["xadvance"].value);
+				
+				OutputXMLCharacter += '<character code='+char_code+' u='+u+' v='+v+' w='+w+' h='+h+' preshift='+preshift+' yadjust='+(yadjust+(FontVerticalOffsetOutput * 1))+' postshift='+(postshift+(FontSpacingOutput * 1))+' />\n';
+			}
+		}
+		
+		//輸出所有轉換結果
+		document.getElementById("TextareaIDOutput").value = '<?xml version=1.0 encoding=UTF-8 ?>\n'
+		+ '<FontData width='+InputFNTCommon.attributes["scaleW"].value+' height='+InputFNTCommon.attributes["scaleH"].value+' padding='+InputFNTInfo.attributes["padding"].value.split(',')[0] * 2+' font_size='+FontSizeOutput+' font_scale=100 line_spacing=100>\n'
+		+ '<FontDetails> \n'
+		+ OutputXMLCharacter
+		+ '</FontDetails>\n'
+		+ '</FontData>';
+	
+		if (ConvertAgain == true)
+		{
+			document.getElementById("PIDFileSelectArea").innerHTML = "重新轉換完畢！";
+			document.getElementById("PIDFileSelectArea").style.color = "#75d375";
+		}
+		else
+		{
+			document.getElementById("PIDFileSelectArea").innerHTML = "轉換完畢！";
+			document.getElementById("PIDFileSelectArea").style.color = "#75d375";
+		}
+		
+		ConvertAgain = false;
+		
+		//字型調整的輸入有誤
+		if (FontSettingError > 0)
+		{
+			document.getElementById("PIDFileSelectArea").innerHTML += "字型調整的設定值無效，已自動改用預設值。";
+			document.getElementById("PIDFileSelectArea").style.color = "#C7C75B";
+		}
+		
+		//顯示轉換結果
+		document.getElementById("DivIDOutputArea").style.display = "inline";
+		
+		//當瀏覽器是Chrome或Firefox時顯示儲存按鈕	
+		if (navigator.userAgent.indexOf("Chrome") != -1 || navigator.userAgent.indexOf("Firefox") != -1)
+		{
+			document.getElementById("InputIDSaveButton").style.display = "inline";
+		}
+	}
+};
+
+//複製內容
+function CopyText()
+{
+	var OutputText = document.createRange();
+	var TextareaOutput = document.getElementById("TextareaIDOutput");
+	
+	OutputText.selectNode(TextareaOutput); //先執行第一種選取方式
+	var Select = window.getSelection();
+	Select.removeAllRanges();
+	Select.addRange(OutputText);
+	
+	TextareaOutput.select(); //再執行第二種選取方式，以防部分瀏覽器不支援第一種選取方式
+	
+	document.execCommand("copy");
+};
+
+//儲存檔案
+function AutoClick(Object)
+{
+	var ClickEvent = document.createEvent("MouseEvents");
+	ClickEvent.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+	Object.dispatchEvent(ClickEvent);
+}
+
+function SaveFile(FileName)
+{
+	var URLObject = window.URL || window.webkitURL || window;
+	var DataText = new Blob([document.getElementById("TextareaIDOutput").value]);
+	var SaveLink = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
+	SaveLink.href = URLObject.createObjectURL(DataText);
+	SaveLink.download = FileName;
+	AutoClick(SaveLink);
+}
+</script>
+</head>
+<body>
+<p id="PIDTitle"><strong>Darweille's MnB Bitmap Font File Converter (FNT to XML)</strong></p>
+
+<div id="DivFileSelectArea" onclick="InputIDSelectFile.click()"><p id="PIDFileSelectArea">瀏覽器必須允許使用 JavaScript 指令碼</p></div>
+
+<input id="InputIDSelectFile" name="InputNameSelectFile" type="file" accept=".fnt" onchange="SelectFile()" hidden="hidden" style="display: none">
+
+<div id="DivIDFontSetting">
+	<span class="SpanClassFontOptions">字型大小調整：<input id="InputFontOptionsSize" class="InputClassFontOptions" name="InputNameFontSize" onchange="FontSetChange()" type="number" value=""></span>
+	<span class="SpanClassFontOptions" style="margin-left: 20px;">字型間距調整：<input id="InputFontOptionsSpacing" class="InputClassFontOptions" name="InputNameFontSpacing" onchange="FontSetChange()" type="number" value=""></span>
+	<span class="SpanClassFontOptions" style="margin-left: 20px;">垂直位移調整：<input id="InputFontOptionsVerticalOffset" class="InputClassFontOptions" name="InputNameFontVerticalOffset" onchange="FontSetChange()" type="number" value=""></span>
+</div>
+
+<div id="DivIDOutputArea">
+<textarea id="TextareaIDOutput" name="TextareaNameOutput" cols="88" rows="18" readonly></textarea>
+	<div id="DivIDButton">
+		<input id="InputIDCopyButton" class="InputClassButton" name="InputNameCopyButton" type="button" onclick="CopyText()" value="全選並複製">
+		<input id="InputIDSaveButton" class="InputClassButton" name="InputNameSaveButton" type="button" onclick="SaveFile('font_data.xml')" style="display: none; margin-left: 25px" value="儲存檔案">
+	</div>
+</div>
+
+<p class="PClassBottom" style="margin: 60px auto 10px auto;"><span id="SpanIDBottom">This tool is modified from: <a href="https://bitbucket.org/Swyter/swyter.bitbucket.org/src/f5cb39d1010a5a388f8635a8cd33b29780aef324/index.html?at=default&amp;fileviewer=file-view-default" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a></span></p>
+<p class="PClassBottom">Last Update: 2020/11/19 by <a href="mailto:wimitsuhide@gmail.com">Darweille</a></p>
+
+<textarea id="TextareaIDInput" name="TextareaNameInput" cols="1" rows="1" onchange="Convert()" readonly="readonly" hidden="hidden" style="display: none"></textarea>
+</body>
+</html>
