@@ -171,3 +171,28 @@ a:hover
 	color: #CBB091;
 	text-decoration: none;
 }
+
+#SelectIDLanguage
+{
+	background: #A68F75;
+	color: #000000;
+	font-size: 100%;
+	text-shadow: 0px 0px 3px #ffffff;
+	padding: 5px;
+	box-shadow: 0px 0px 2px 0px #000000;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+#SelectIDLanguage:hover
+{
+	background: #BBAC9A;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px #000000;
+}
+
+.OptionClassLanguage
+{
+	background: #A68F75;
+	color: #000000;
+}

@@ -4,35 +4,42 @@
 <meta charset="UTF-8">
 <title>Darweille's MnB Bitmap Font File Converter</title>
 <link rel="stylesheet" type="text/css" href="Converter.css" >
-<script type="text/javascript" src="Converter.js"></script>
 </head>
 <body>
 <p id="PIDTitle"><strong>Darweille's MnB Bitmap Font File Converter (FNT to XML)</strong></p>
 
-<div id="DivFileSelectArea" onclick="InputIDSelectFile.click()"><p id="PIDFileSelectArea">瀏覽器必須允許使用 JavaScript 指令碼</p></div>
+<div id="DivFileSelectArea" onclick="InputIDSelectFile.click()"><p id="PIDFileSelectArea">瀏覽器必須允許使用 JavaScript 指令碼<br /><br />The browser must enable JavaScript.</p></div>
 
-<input id="InputIDSelectFile" name="InputNameSelectFile" type="file" accept=".fnt" onchange="SelectFile()" style="display: none">
+<input id="InputIDSelectFile" name="InputNameSelectFile" type="file" accept=".fnt" oninput="SelectFile()" style="display: none">
 
 <div id="DivIDFontSetting">
-	<span class="SpanClassFontOptions">字型大小調整：<input id="InputFontOptionsSize" class="InputClassFontOptions" name="InputNameFontSize" onchange="FontSetChange()" type="number" value=""></span>
-	<span class="SpanClassFontOptions" style="margin-left: 20px;">字型間距調整：<input id="InputFontOptionsSpacing" class="InputClassFontOptions" name="InputNameFontSpacing" onchange="FontSetChange()" type="number" value=""></span>
-	<span class="SpanClassFontOptions" style="margin-left: 20px;">垂直位移調整：<input id="InputFontOptionsVerticalOffset" class="InputClassFontOptions" name="InputNameFontVerticalOffset" onchange="FontSetChange()" type="number" value=""></span>
+	<span id="SpanIDFontOptionsSize" class="SpanClassFontOptions"><input id="InputIDFontOptionsSize" class="InputClassFontOptions" name="InputNameFontSize" oninput="FontSetChange()" type="number" value=""></span>
+	<span id="SpanIDFontOptionsSpacing" class="SpanClassFontOptions" style="margin-left: 20px;"><input id="InputIDFontOptionsSpacing" class="InputClassFontOptions" name="InputNameFontSpacing" oninput="FontSetChange()" type="number" value=""></span>
+	<span id="SpanIDFontOptionsVerticalOffset" class="SpanClassFontOptions" style="margin-left: 20px;"><input id="InputIDFontOptionsVerticalOffset" class="InputClassFontOptions" name="InputNameFontVerticalOffset" oninput="FontSetChange()" type="number" value=""></span>
 </div>
 
 <div id="DivIDOutputArea">
 <textarea id="TextareaIDOutput" name="TextareaNameOutput" cols="88" rows="18" readonly></textarea>
 	<div id="DivIDButton">
-		<input id="InputIDCopyButton" class="InputClassButton" name="InputNameCopyButton" type="button" onclick="CopyText()" value="全選並複製">
-		<input id="InputIDSaveButton" class="InputClassButton" name="InputNameSaveButton" type="button" onclick="SaveFile('font_data.xml')" style="display: none; margin-left: 25px" value="儲存檔案">
+		<input id="InputIDCopyButton" class="InputClassButton" name="InputNameCopyButton" type="button" onclick="CopyText()" value="Copy All">
+		<input id="InputIDSaveButton" class="InputClassButton" name="InputNameSaveButton" type="button" onclick="SaveFile('font_data.xml')" style="display: none; margin-left: 25px" value="Save File">
 	</div>
 </div>
 
 <div id="DivIDBottom">
-	<p class="PClassBottom">This tool is modified from: <a href="https://bitbucket.org/Swyter/swyter.bitbucket.org/src/f5cb39d1010a5a388f8635a8cd33b29780aef324/index.html?at=default&amp;fileviewer=file-view-default" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a></p>
-	<p class="PClassBottom">Last Update: 2020/11/19 by <a href="mailto:wimitsuhide@gmail.com">Darweille</a></p>
-	
+	<p class="PClassBottom">The original converts code is modified from: <a href="https://bitbucket.org/Swyter/" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a>.</p>
+	<p class="PClassBottom">Language: 
+		<select id="SelectIDLanguage" name="SelectNameLanguage" onchange="LanguageSelected()">
+			<option class="OptionClassLanguage" value="en" selected="">English</option>
+			<option class="OptionClassLanguage" value="tc">中文</option>
+		</select>
+	</p>
+	<p class="PClassBottom">Last Update: 2020/11/22 by <a href="mailto:wimitsuhide@gmail.com">Darweille</a>.</p>
 </div>
 
-<textarea id="TextareaIDInput" name="TextareaNameInput" cols="1" rows="1" onchange="Convert()" readonly="readonly" style="display: none"></textarea>
+<textarea id="TextareaIDInput" name="TextareaNameInput" cols="1" rows="1" oninput="Convert()" readonly="readonly" style="display: none"></textarea>
+<input id="InputIDStringFileSelectArea" name="InputNameStringFileSelectArea"  oninput="StringChange()" type="number" value="0" style="display: none">
+
+<script type="text/javascript" src="Converter.js"></script>
 </body>
 </html>
