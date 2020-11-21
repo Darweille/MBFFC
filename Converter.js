@@ -193,7 +193,7 @@ function Convert()
 		//字型調整的輸入有誤
 		if (FontSettingError > 0)
 		{
-			document.getElementById("PIDFileSelectArea").innerHTML += "<br />字型調整的設定值無效，已自動改用預設值";
+			document.getElementById("PIDFileSelectArea").innerHTML += "<br /><br />字型調整的設定值無效，已自動改用預設值";
 			document.getElementById("PIDFileSelectArea").style.color = "rgb(255,255,0)";
 		}
 		else
@@ -222,7 +222,7 @@ function Convert()
 	{
 		InputFile = null;
 		document.getElementById("InputIDSelectFile").value = null;
-		document.getElementById("PIDFileSelectArea").innerHTML = "檔案內容有誤或者不符合";
+		document.getElementById("PIDFileSelectArea").innerHTML = "轉換失敗<br /><br />檔案內容可能有誤";
 		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
 		FileSelectTextEffecter();
 	}
