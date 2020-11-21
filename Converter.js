@@ -71,17 +71,17 @@ function FileCheck()
 	if (InputFile.name.substr(InputFile.name.lastIndexOf(".")) != ".fnt") //假如檔案不是FNT檔
 	{
 		InputFile = null; //清空檔案
+		document.getElementById("InputIDSelectFile").value = null;
 		document.getElementById("PIDFileSelectArea").innerHTML = "檔案類型不符合";
 		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
-		document.getElementById("InputIDSelectFile").value = null;
 		FileSelectTextEffecter();
 	}
 	else if (InputFile.size > 10485760) //假如檔案大小超過 10MB
 	{
 		InputFile = null;
+		document.getElementById("InputIDSelectFile").value = null;
 		document.getElementById("PIDFileSelectArea").innerHTML = "檔案大小不能超過 10MB";
 		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
-		document.getElementById("InputIDSelectFile").value = null;
 		FileSelectTextEffecter();
 	}
 	else
@@ -220,9 +220,10 @@ function Convert()
 	}
 	catch (e)
 	{
+		InputFile = null;
+		document.getElementById("InputIDSelectFile").value = null;
 		document.getElementById("PIDFileSelectArea").innerHTML = "檔案內容有誤或者不符合";
 		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
-		document.getElementById("InputIDSelectFile").value = null;
 		FileSelectTextEffecter();
 	}
 };
