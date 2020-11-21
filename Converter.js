@@ -1,6 +1,7 @@
-var InputFile, IntervalTimer;
+var InputFile, IntervalTimer, IntervalTimer2;
 var ConvertAgain = false;
 var StuckTime = 0;
+var OutputTextOpacity = 0.01;
 
 //頁面讀取完成時
 window.onload = function()
@@ -62,7 +63,7 @@ function Initialization()
 	document.getElementById("DivIDOutputArea").style.display = "none";
 };
 
-//檢查檔案
+//檢查檔案類型及大小
 function FileCheck()
 {
 	Initialization();
@@ -72,14 +73,16 @@ function FileCheck()
 		InputFile = null; //清空檔案
 		document.getElementById("PIDFileSelectArea").innerHTML = "檔案類型不符合";
 		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
-		TextEffecter();
+		document.getElementById("InputIDSelectFile").value = null;
+		FileSelectTextEffecter();
 	}
 	else if (InputFile.size > 10485760) //假如檔案大小超過 10MB
 	{
 		InputFile = null;
 		document.getElementById("PIDFileSelectArea").innerHTML = "檔案大小不能超過 10MB";
 		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
-		TextEffecter();
+		document.getElementById("InputIDSelectFile").value = null;
+		FileSelectTextEffecter();
 	}
 	else
 	{		
@@ -104,67 +107,47 @@ function Convert()
 	
 	document.getElementById("PIDFileSelectArea").innerHTML = "正在解析檔案";
 	
-	var FileError = false;
+	var OutputXMLCharacter = "";
 	
 	//使用DOMParser以XML格式解析內容
 	var Parser = new DOMParser();
-	var ParserData = document.getElementById("TextareaIDInput").value;
-	
-	try
-	{
-		var ParserResult = Parser.parseFromString(ParserData, "text/xml");
-	}
-	catch (e)
-	{
-		FileError = true;
-	}
+	var ParserData = document.getElementById("TextareaIDInput").value; //從TextareaIDInput讀取內容
 	
 	document.getElementById("PIDFileSelectArea").innerHTML = "正在轉換";
 	
-	var OutputXMLCharacter = "";
-	
-	var InputFNTChar = ParserResult.getElementsByTagName("char");
-	var InputFNTInfo = ParserResult.getElementsByTagName("info")[0];
-	var InputFNTCommon = ParserResult.getElementsByTagName("common")[0];
-	
-	//字型調整
-	var FontSettingError = 0; //用於判斷字型設定是否有誤
-	var FontSizeSet = document.getElementById("InputFontOptionsSize").value; //字型大小設定值
-	var FontSpacingSet = document.getElementById("InputFontOptionsSpacing").value; //字型間距設定值
-	var FontVerticalOffsetSet = document.getElementById("InputFontOptionsVerticalOffset").value; //垂直位移設定值
-	
+	//開始轉換
 	try
 	{
+		var ParserResult = Parser.parseFromString(ParserData, "text/xml");
+	
+		var InputFNTChar = ParserResult.getElementsByTagName("char");
+		var InputFNTInfo = ParserResult.getElementsByTagName("info")[0];
+		var InputFNTCommon = ParserResult.getElementsByTagName("common")[0];
+		
+		
+		//字型調整
+		var FontSettingError = 0; //用於判斷字型設定是否有誤
+				
 		var FontSizeOutput = InputFNTInfo.attributes["size"].value; //字型大小預設值
-	}
-	catch (e)
-	{
-		FileError = true;
-	}
+		var FontSpacingOutput = 0;
+		var FontVerticalOffsetOutput = 0;
 		
-	var FontSpacingOutput = 0;
-	var FontVerticalOffsetOutput = 0;
+		var FontSizeSet = document.getElementById("InputFontOptionsSize").value; //字型大小設定值
+		var FontSpacingSet = document.getElementById("InputFontOptionsSpacing").value; //字型間距設定值
+		var FontVerticalOffsetSet = document.getElementById("InputFontOptionsVerticalOffset").value; //垂直位移設定值
 		
-	//字型大小的數值結果
-	if (FontSizeSet > 0) { FontSizeOutput = FontSizeSet; }
-	else if (FontSizeSet != "") { FontSettingError += 1; }
+		//字型大小的數值結果
+		if (FontSizeSet > 0) { FontSizeOutput = FontSizeSet; }
+		else if (FontSizeSet != "") { FontSettingError += 1; }
 		
-	//字型間距的數值結果
-	if (FontSpacingSet >= 0 || FontSpacingSet < 0) { FontSpacingOutput = FontSpacingSet; }
-	else if (FontSpacingSet != "") { FontSettingError += 1; }
+		//字型間距的數值結果
+		if (FontSpacingSet >= 0 || FontSpacingSet < 0) { FontSpacingOutput = FontSpacingSet; }
+		else if (FontSpacingSet != "") { FontSettingError += 1; }
 		
-	//垂直位移的數值結果
-	if (FontVerticalOffsetSet >= 0 || FontVerticalOffsetSet < 0) { FontVerticalOffsetOutput = FontVerticalOffsetSet; }
-	else if (FontVerticalOffsetSet != "") { FontSettingError += 1; }
+		//垂直位移的數值結果
+		if (FontVerticalOffsetSet >= 0 || FontVerticalOffsetSet < 0) { FontVerticalOffsetOutput = FontVerticalOffsetSet; }
+		else if (FontVerticalOffsetSet != "") { FontSettingError += 1; }
 		
-	if (FileError == true)
-	{
-		document.getElementById("PIDFileSelectArea").innerHTML = "檔案格式不相容";
-		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
-		TextEffecter();
-	}
-	else
-	{
 		//轉換char的格式
 		for (obj in InputFNTChar)
 		{
@@ -194,7 +177,8 @@ function Convert()
 		+ OutputXMLCharacter
 		+ '</FontDetails>\n'
 		+ '</FontData>';
-	
+		
+		//判斷是否為重新轉換
 		if (ConvertAgain == true)
 		{
 			document.getElementById("PIDFileSelectArea").innerHTML = "重新轉換完畢";
@@ -205,22 +189,28 @@ function Convert()
 		}
 		
 		ConvertAgain = false;
-		
+
 		//字型調整的輸入有誤
 		if (FontSettingError > 0)
 		{
-			document.getElementById("PIDFileSelectArea").innerHTML += "<br />字型調整的設定值無效，已自動改用預設值。";
+			document.getElementById("PIDFileSelectArea").innerHTML += "<br />字型調整的設定值無效，已自動改用預設值";
 			document.getElementById("PIDFileSelectArea").style.color = "rgb(255,255,0)";
-			TextEffecter();
 		}
 		else
 		{
 			document.getElementById("PIDFileSelectArea").style.color = "rgb(100,200,100)";
-			TextEffecter();
 		}
 		
-		//顯示轉換結果
+		document.getElementById("InputIDSelectFile").value = null;
+		
+		//檔案選取區的文字訊息特效
+		FileSelectTextEffecter();
+		
+		//顯示轉換結果輸出區
 		document.getElementById("DivIDOutputArea").style.display = "inline";
+		
+		//轉換結果文字特效
+		OutputFileSelectTextEffecter();
 		
 		//當瀏覽器是Chrome或Firefox時顯示儲存按鈕	
 		if (navigator.userAgent.indexOf("Chrome") != -1 || navigator.userAgent.indexOf("Firefox") != -1)
@@ -228,62 +218,75 @@ function Convert()
 			document.getElementById("InputIDSaveButton").style.display = "inline";
 		}
 	}
+	catch (e)
+	{
+		document.getElementById("PIDFileSelectArea").innerHTML = "檔案內容有誤或者不符合";
+		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
+		document.getElementById("InputIDSelectFile").value = null;
+		FileSelectTextEffecter();
+	}
 };
 
 //文字特效器
-function TextEffecter()
-{
-	document.getElementById("TextareaIDOutput").style.opacity = 0.1;
-	
+function FileSelectTextEffecter()
+{	
 	StuckTime = 0; //重置停頓時間
-	clearInterval(IntervalTimer); //清除計時器
-	IntervalTimer = setInterval(TextEffects, 50); //使用計時器
+	clearInterval(IntervalTimer); //重置計時器
+	IntervalTimer = setInterval(FileSelectTextEffects, 100); //使用計時器
 }
 
-//文字特效內容
-function TextEffects()
+//檔案選取區的文字特效
+function FileSelectTextEffects()
 {
-	//檔案選取區訊息的顏色變化
+	//取得文字顏色資料
 	var FileSelectTextColorData = document.getElementById("PIDFileSelectArea").style.color.replace("rgb","").replace("(","").replace(")","").split(",");
 	var FileSelectTextColorR = FileSelectTextColorData[0];
 	var FileSelectTextColorG = FileSelectTextColorData[1];
 	var FileSelectTextColorB = FileSelectTextColorData[2];
 	
-	if (StuckTime > 40)
+	if (StuckTime > 20)
 	{
-		if (FileSelectTextColorR < 255) { FileSelectTextColorR = Number(FileSelectTextColorR) + 4; }
-		if (FileSelectTextColorG < 255) { FileSelectTextColorG = Number(FileSelectTextColorG) + 4; }
-		if (FileSelectTextColorB < 255) { FileSelectTextColorB = Number(FileSelectTextColorB) + 4; }
+		if (FileSelectTextColorR < 255) { FileSelectTextColorR = Number(FileSelectTextColorR) + 10; }
+		if (FileSelectTextColorG < 255) { FileSelectTextColorG = Number(FileSelectTextColorG) + 10; }
+		if (FileSelectTextColorB < 255) { FileSelectTextColorB = Number(FileSelectTextColorB) + 10; }
 		
 		//防止溢出
 		if (FileSelectTextColorR > 255) { FileSelectTextColorR = 255; }
 		if (FileSelectTextColorG > 255) { FileSelectTextColorG = 255; }
 		if (FileSelectTextColorB > 255) { FileSelectTextColorB = 255; }
 		
-		var FontColorNew = "rgb(" + FileSelectTextColorR + "," + FileSelectTextColorG + "," + FileSelectTextColorB + ")";
-		
-		document.getElementById("PIDFileSelectArea").style.color = FontColorNew;
+		document.getElementById("PIDFileSelectArea").style.color = "rgb(" + FileSelectTextColorR + "," + FileSelectTextColorG + "," + FileSelectTextColorB + ")";
 	}
 	else
 	{
 		StuckTime += 1;
 	}
-	
-	//轉換結果區的文字透明度變化
-	var OutputTextOpacity = document.getElementById("TextareaIDOutput").style.opacity;
-	
-	if (OutputTextOpacity < 1)
-	{
-		document.getElementById("TextareaIDOutput").style.opacity = Number(OutputTextOpacity) + 0.01;
-	}
-	else
-	{
-		document.getElementById("TextareaIDOutput").style.opacity = 1;
-	}
-	
+		
 	if (FileSelectTextColorR == 255 && FileSelectTextColorG == 255 && FileSelectTextColorB == 255)
 	{
 		clearInterval(IntervalTimer);
+	}
+}
+
+//輸出內容特效
+function OutputFileSelectTextEffecter()
+{
+	OutputTextOpacity = 0.01; //重置透明度
+	clearInterval(IntervalTimer2); //重置計時器
+	IntervalTimer2 = setInterval(OutputFileSelectTextEffects, 100); //使用計時器
+}
+
+function OutputFileSelectTextEffects()
+{
+	if (OutputTextOpacity < 1)
+	{
+		OutputTextOpacity += 0.07;
+		if (OutputTextOpacity > 1) { OutputTextOpacity = 1; } //防止溢位
+		document.getElementById("TextareaIDOutput").style.color = "rgba(255,255,255," + OutputTextOpacity + ")";
+	}
+	else
+	{
+		clearInterval(IntervalTimer2);
 	}
 }
 
