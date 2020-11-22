@@ -27,19 +27,6 @@ a:hover
 	padding: 8px;
 }
 
-#DivFileSelectArea:hover
-{
-	border-radius: 32px;
-	background: radial-gradient(ellipse at center, #C1A88C, #8B6F59);
-	cursor: pointer;
-}
-
-#DivFileSelectArea:active
-{
-	border-radius: 64px;
-	background: radial-gradient(circle at center, #C1A88C, #8B6F59);
-}
-
 #PIDFileSelectArea
 {
 	font-size: 125%;
@@ -48,8 +35,8 @@ a:hover
 
 #DivIDFontSetting
 {
-	margin: 35px 25% 30px auto;
-	text-align: center;
+	margin: auto auto auto auto;
+	display: inline-block;
 }
 
 #DivIDFontSetting p
@@ -65,11 +52,6 @@ a:hover
 	padding: 15px;
 	font-size: 125%;
 	border-radius: 12px 12px 12px 12px;
-}
-
-#DivIDFontSetting span:hover
-{
-	background-color: #69503D;
 }
 
 #DivIDFontSetting input
@@ -121,27 +103,6 @@ a:hover
 	text-shadow: 1px 1px 1px #DFDFDF;
 }
 
-#DivIDButton input:hover
-{
-	text-shadow: 0px 0px 6px #ffffff;
-	background: -webkit-linear-gradient(left top, #ffffff, #F3ECE7);
-	background: -o-linear-gradient(left top, #ffffff, #F3ECE7);
-	background: -moz-linear-gradient(left top, #ffffff, #F3ECE7);
-	background: linear-gradient(to left top, #ffffff, #F3ECE7);
-	cursor: pointer;
-}
-
-#DivIDButton input:active
-{
-	color: #ffffff;
-	text-decoration: none;
-	position: relative;
-	top: 1px;
-	left: 1px;
-	text-shadow: 0px 0px 6px #A5A5A5;
-	box-shadow: 1px 1px 8px 1px #000000;
-}
-
 #DivIDBottom
 {
 	border-top : 5px groove #A68F75;
@@ -162,12 +123,6 @@ a:hover
 	text-decoration: none;
 }
 
-#DivIDBottom p a:hover
-{
-	color: #CBB091;
-	text-decoration: none;
-}
-
 #SelectIDLanguage
 {
 	background: #A68F75;
@@ -178,13 +133,6 @@ a:hover
 	box-shadow: 0px 0px 2px 0px #000000;
 	border-radius: 10px;
 	font-weight: bold;
-}
-
-#SelectIDLanguage:hover
-{
-	background: #BBAC9A;
-	color: #ffffff;
-	text-shadow: 0px 0px 3px #000000;
 }
 
 #SelectIDLanguage option
