@@ -1,4 +1,4 @@
-var InputFile, IntervalTimer, IntervalTimer2;
+﻿var InputFile, IntervalTimer, IntervalTimer2;
 var LanguageString = [];
 var LanguageStringNumber = [];
 var ConvertAgain = false;
@@ -38,9 +38,9 @@ function LanguageEN()
 	LanguageString[7] = "Convert done.";
 	LanguageString[8] = "Convert done.<br /><br />Font setting invalid. The setting has been changed to default.";
 	LanguageString[9] = "Convert failed.<br /><br />The file contents may incorrectly.";
-	LanguageString[10] = "Font Size: ";
-	LanguageString[11] = "Spacing: ";
-	LanguageString[12] = "Vertical Offset:";
+	LanguageString[10] = "Font Size Adjust: ";
+	LanguageString[11] = "Spacing Adjust: ";
+	LanguageString[12] = "Vertical Offset Adjust: ";
 	LanguageString[13] = "Copy All";
 	LanguageString[14] = "Save File";
 }
