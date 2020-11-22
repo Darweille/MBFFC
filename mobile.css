@@ -1,0 +1,195 @@
+﻿body
+{
+	text-align: center;
+	background-color: #7A5F4B;
+	color: #ffffff;
+	text-shadow: 1px 1px 2px #000000;
+	font-size: 20pt;
+}
+
+a, a:visited, a:active
+{
+	color: #ffffff;
+}
+
+a:hover
+{
+	color: #CBCBCB;
+}
+
+#DivFileSelectArea
+{
+	width: 90%;
+	margin: 35px auto 20px auto;
+	border: dashed 3px #3C2513;
+	border-radius: 24px;
+	background: radial-gradient(ellipse at center, #B79D80, #7A5F4B);
+	padding: 8px;
+}
+
+#DivFileSelectArea:hover
+{
+	border-radius: 32px;
+	background: radial-gradient(ellipse at center, #C1A88C, #8B6F59);
+	cursor: pointer;
+}
+
+#DivFileSelectArea:active
+{
+	border-radius: 64px;
+	background: radial-gradient(circle at center, #C1A88C, #8B6F59);
+}
+
+#PIDFileSelectArea
+{
+	font-size: 125%;
+	padding: 15px;
+}
+
+#DivIDFontSetting
+{
+	margin: 35px 25% 30px auto;
+	text-align: center;
+}
+
+#DivIDFontSetting p
+{
+	text-align: right;
+	margin: 15px auto 15px auto;
+	height: 60px;
+}
+
+#DivIDFontSetting span
+{
+	color: #ffffff;
+	padding: 15px;
+	font-size: 125%;
+	border-radius: 12px 12px 12px 12px;
+}
+
+#DivIDFontSetting span:hover
+{
+	background-color: #69503D;
+}
+
+#DivIDFontSetting input
+{
+	color: #ffffff;
+	width: 80px;
+	font-size: 100%;
+	background-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-top-color: transparent;
+	border-bottom-color: #000000;
+	outline: none;
+}
+
+#DivIDOutputArea
+{
+	display: none;
+}
+
+#TextareaIDOutput
+{
+	font-size: 75%;
+	border: 2px #000000;
+	border-radius: 4px;
+	background-color: #664F3E;
+	color: #ffffff;
+	box-shadow: 1px 1px 8px 1px #000000;
+}
+
+#DivIDButton
+{
+	margin: 20px auto -15px auto;
+}
+
+#DivIDButton input
+{
+	outline: none;
+	font-weight: bold;
+	font-size: 125%;
+	width: 40%;
+	height: 60px;
+	border-radius: 12px;
+	background: -webkit-linear-gradient(left top, #D3C4B8, #ffffff);
+	background: -o-linear-gradient(left top, #D3C4B8, #ffffff);
+	background: -moz-linear-gradient(left top, #D3C4B8, #ffffff);
+	background: linear-gradient(to left top, #D3C4B8, #ffffff);
+	box-shadow: 2px 2px 2px 2px #2D2114;
+	text-shadow: 1px 1px 1px #DFDFDF;
+}
+
+#DivIDButton input:hover
+{
+	text-shadow: 0px 0px 6px #ffffff;
+	background: -webkit-linear-gradient(left top, #ffffff, #F3ECE7);
+	background: -o-linear-gradient(left top, #ffffff, #F3ECE7);
+	background: -moz-linear-gradient(left top, #ffffff, #F3ECE7);
+	background: linear-gradient(to left top, #ffffff, #F3ECE7);
+	cursor: pointer;
+}
+
+#DivIDButton input:active
+{
+	color: #ffffff;
+	text-decoration: none;
+	position: relative;
+	top: 1px;
+	left: 1px;
+	text-shadow: 0px 0px 6px #A5A5A5;
+	box-shadow: 1px 1px 8px 1px #000000;
+}
+
+#DivIDBottom
+{
+	border-top : 5px groove #A68F75;
+	margin: 50px auto auto auto;
+}
+
+#DivIDBottom p
+{
+	font-weight: bold;
+	color: #A68F75;
+	text-shadow: 0px 0px 3px #000000;
+}
+
+#DivIDBottom p a
+{
+	color: #A68F75;
+	text-shadow: 0px 0px 3px #000000;
+	text-decoration: none;
+}
+
+#DivIDBottom p a:hover
+{
+	color: #CBB091;
+	text-decoration: none;
+}
+
+#SelectIDLanguage
+{
+	background: #A68F75;
+	color: #000000;
+	font-size: 100%;
+	text-shadow: 0px 0px 3px #ffffff;
+	padding: 5px;
+	box-shadow: 0px 0px 2px 0px #000000;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+#SelectIDLanguage:hover
+{
+	background: #BBAC9A;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px #000000;
+}
+
+#SelectIDLanguage option
+{
+	background: #A68F75;
+	color: #000000;
+	text-shadow: 0px 0px 0px #ffffff;
+}
