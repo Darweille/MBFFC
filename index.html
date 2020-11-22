@@ -6,9 +6,35 @@
 <title>Darweille's MnB Bitmap Font File Converter</title>
 <link rel="stylesheet" type="text/css" href="desktop.css">
 <script>
-if (screen.width < 768)
+//取得全部Cookie並解析為陣列
+var AllCookieArray = document.cookie.split(";");
+var CookieMobileNumber = -1;
+var CookieMobileData = 0;
+
+//搜尋全部的Cookie
+for (count=0; count<AllCookieArray.length; count++)
 {
-	location.replace("mobile.html");
+	var CookieName = AllCookieArray[count].split("=");
+	if (CookieName[0] == "Mobile")
+	{
+		CookieMobileNumber = count;
+	}
+}
+
+//若有找到Mobile的Cookie
+if (CookieMobileNumber != -1)
+{
+	CookieMobileData = AllCookieArray[CookieMobileNumber].split("=")[1]; //讀取數值
+}
+
+//假如不是從Mobile頁回來
+if (CookieMobileData != 1)
+{
+	//判斷解析度的寬度
+	if (screen.width < 768)
+	{
+		location.replace("mobile.html");
+	}
 }
 </script>
 </head>
