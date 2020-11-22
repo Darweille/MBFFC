@@ -3,8 +3,9 @@
 	text-align: center;
 	background-color: #7A5F4B;
 	color: #ffffff;
-	text-shadow: 1px 1px 2px #000000;
+	text-shadow: 2pt 2pt 3pt #000000;
 	font-size: 20pt;
+	text-size-adjust: 300%;
 }
 
 a, a:visited, a:active
@@ -20,44 +21,44 @@ a:hover
 #DivFileSelectArea
 {
 	width: 90%;
-	margin: 35px auto 20px auto;
-	border: dashed 3px #3C2513;
-	border-radius: 24px;
+	margin: 30pt auto 10pt auto;
+	border: dashed 3pt #3C2513;
+	border-radius: 24pt;
 	background: radial-gradient(ellipse at center, #B79D80, #7A5F4B);
-	padding: 8px;
+	padding: 8pt;
 }
 
 #PIDFileSelectArea
 {
 	font-size: 125%;
-	padding: 15px;
+	padding: 15pt;
 }
 
 #DivIDFontSetting
 {
-	margin: auto auto auto auto;
-	display: inline-block;
+	
+	display: inline-table;
+	margin: 10pt auto 15pt auto;
 }
 
 #DivIDFontSetting p
 {
 	text-align: right;
-	margin: 15px auto 15px auto;
-	height: 60px;
+	margin: 15pt auto 15pt auto;
 }
 
 #DivIDFontSetting span
 {
 	color: #ffffff;
-	padding: 15px;
+	padding: 15pt;
 	font-size: 125%;
-	border-radius: 12px 12px 12px 12px;
+	border-radius: 12pt 12pt 12pt 12pt;
 }
 
 #DivIDFontSetting input
 {
 	color: #ffffff;
-	width: 80px;
+	width: 100pt;
 	font-size: 100%;
 	background-color: transparent;
 	border-left-color: transparent;
@@ -70,21 +71,22 @@ a:hover
 #DivIDOutputArea
 {
 	display: none;
+	margin: 15pt auto 15pt auto;
 }
 
 #TextareaIDOutput
 {
 	font-size: 75%;
-	border: 2px #000000;
-	border-radius: 4px;
+	border: 2pt #000000;
+	border-radius: 4pt;
 	background-color: #664F3E;
 	color: #ffffff;
-	box-shadow: 1px 1px 8px 1px #000000;
+	box-shadow: 1pt 1pt 8pt 1pt #000000;
 }
 
 #DivIDButton
 {
-	margin: 20px auto -15px auto;
+	margin: 15pt auto 15pt auto;
 }
 
 #DivIDButton input
@@ -92,34 +94,34 @@ a:hover
 	outline: none;
 	font-weight: bold;
 	font-size: 125%;
-	width: 40%;
-	height: 60px;
-	border-radius: 12px;
+	width: 45%;
+	height: 65pt;
+	border-radius: 12pt;
 	background: -webkit-linear-gradient(left top, #D3C4B8, #ffffff);
 	background: -o-linear-gradient(left top, #D3C4B8, #ffffff);
 	background: -moz-linear-gradient(left top, #D3C4B8, #ffffff);
 	background: linear-gradient(to left top, #D3C4B8, #ffffff);
-	box-shadow: 2px 2px 2px 2px #2D2114;
-	text-shadow: 1px 1px 1px #DFDFDF;
+	box-shadow: 2pt 2pt 2pt 2pt #2D2114;
+	text-shadow: 1pt 1pt 1pt #DFDFDF;
 }
 
 #DivIDBottom
 {
-	border-top : 5px groove #A68F75;
-	margin: 50px auto auto auto;
+	border-top : 5pt groove #A68F75;
+	margin: 30pt auto auto auto;
 }
 
 #DivIDBottom p
 {
 	font-weight: bold;
 	color: #A68F75;
-	text-shadow: 0px 0px 3px #000000;
+	text-shadow: 0pt 0pt 3pt #000000;
 }
 
 #DivIDBottom p a
 {
 	color: #A68F75;
-	text-shadow: 0px 0px 3px #000000;
+	text-shadow: 0pt 0pt 3pt #000000;
 	text-decoration: none;
 }
 
@@ -127,17 +129,17 @@ a:hover
 {
 	background: #A68F75;
 	color: #000000;
-	font-size: 100%;
-	text-shadow: 0px 0px 3px #ffffff;
-	padding: 5px;
-	box-shadow: 0px 0px 2px 0px #000000;
-	border-radius: 10px;
+	text-shadow: 0pt 0pt 3pt #ffffff;
+	padding: 5pt;
+	box-shadow: 0pt 0pt 2pt 0pt #000000;
+	border-radius: 10pt;
 	font-weight: bold;
+	font-size: 150%;
 }
 
 #SelectIDLanguage option
 {
 	background: #A68F75;
 	color: #000000;
-	text-shadow: 0px 0px 0px #ffffff;
+	text-shadow: 0pt 0pt 0pt #ffffff;
 }
