@@ -5,38 +5,7 @@
 <meta content="zh-tw" http-equiv="Content-Language">
 <title>Darweille's MnB Bitmap Font File Converter</title>
 <link rel="stylesheet" type="text/css" href="desktop.css">
-<script>
-//取得全部Cookie並解析為陣列
-var AllCookieArray = document.cookie.split(";");
-var CookieMobileNumber = -1;
-var CookieMobileData = 0;
-
-//搜尋全部的Cookie
-for (count=0; count<AllCookieArray.length; count++)
-{
-	var CookieName = AllCookieArray[count].split("=");
-	if (CookieName[0] == "Mobile")
-	{
-		CookieMobileNumber = count;
-	}
-}
-
-//若有找到Mobile的Cookie
-if (CookieMobileNumber != -1)
-{
-	CookieMobileData = AllCookieArray[CookieMobileNumber].split("=")[1]; //讀取數值
-}
-
-//假如不是從Mobile頁回來
-if (CookieMobileData != 1)
-{
-	//判斷解析度的寬度
-	if (screen.width < 768)
-	{
-		location.replace("mobile.html");
-	}
-}
-</script>
+<script type="text/javascript" src="desktop.js"></script>
 </head>
 <body>
 <div id="DivIDTitle">
@@ -78,7 +47,6 @@ if (CookieMobileData != 1)
 
 <textarea id="TextareaIDInput" name="TextareaNameInput" cols="1" rows="1" oninput="Convert()" readonly="readonly" style="display: none"></textarea>
 <input id="InputIDStringFileSelectArea" name="InputNameStringFileSelectArea"  oninput="StringChange()" type="number" value="0" style="display: none">
-
-<script type="text/javascript" src="Converter.js"></script>
+<script type="text/javascript" src="converter.js"></script>
 </body>
 </html>
