@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="DivIDTitle">
-	<p>Darweille's MnB Bitmap Font File Converter (FNT to XML)</p>
+	<p>Darweille's MnB FNT to XML Format Converter</p>
 </div>
 
 <div id="DivFileSelectArea" onclick="InputIDSelectFile.click()"><p id="PIDFileSelectArea">瀏覽器必須允許使用 JavaScript 指令碼<br /><br />The browser must enable JavaScript.</p></div>
@@ -41,12 +41,14 @@
 			<option value="tc">中文</option>
 		</select>
 	</p>
-	<p>The original converts code is modified from: <a href="https://bitbucket.org/Swyter/" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a>.</p>
+	<p>The original converts code is from: <a href="https://bitbucket.org/Swyter/" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a>.</p>
 	<p>Last Update: 2020/11/22 by <a href="https://github.com/Darweille" target="_blank">Darweille</a>.</p>
 </div>
 
 <textarea id="TextareaIDInput" name="TextareaNameInput" cols="1" rows="1" oninput="Convert()" readonly="readonly" style="display: none"></textarea>
+
 <input id="InputIDStringFileSelectArea" name="InputNameStringFileSelectArea"  oninput="StringChange()" type="number" value="0" style="display: none">
+
 <script type="text/javascript" src="converter.js"></script>
 </body>
 </html>
