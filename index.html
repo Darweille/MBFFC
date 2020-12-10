@@ -8,46 +8,46 @@
 <script type="text/javascript" src="desktop.js"></script>
 </head>
 <body>
-<div id="DivIDTitle">
+<div id="idDivTitle">
 	<p>Darweille's MnB FNT to XML Format Converter</p>
 </div>
 
-<div id="DivFileSelectArea" onclick="InputIDSelectFile.click()"><p id="PIDFileSelectArea">瀏覽器必須允許使用 JavaScript 指令碼<br /><br />The browser must enable JavaScript.</p></div>
+<div id="idDivFileSelecter" onclick="idInputFileSelecter.click()"><p id="idPFileSelecter">瀏覽器必須允許使用 JavaScript 指令碼<br /><br />The browser must enable JavaScript.</p></div>
 
-<input id="InputIDSelectFile" name="InputNameSelectFile" type="file" accept=".fnt" oninput="SelectFile()" style="display: none">
+<input id="idInputFileSelecter" name="nameInputFileSelecter" type="file" accept=".fnt" oninput="SelectFile()" style="display: none">
 
-<div id="DivIDFontSetting">
+<div id="idDivFontSetting">
 <ul>
-	<li><span id="SpanIDFontOptionsSize"><input id="InputIDFontOptionsSize" name="InputNameFontSize" oninput="FontSetChange()" type="number" value=""></span></li>
-	<li><span id="SpanIDFontOptionsSpacing"><input id="InputIDFontOptionsSpacing" name="InputNameFontSpacing" oninput="FontSetChange()" type="number" value=""></span></li>
-	<li><span id="SpanIDFontOptionsVerticalOffset"><input id="InputIDFontOptionsVerticalOffset" name="InputNameFontVerticalOffset" oninput="FontSetChange()" type="number" value=""></span></li>
+	<li><span id="idSpanFontOptionsSize"><input id="idInputFontOptionsSize" name="nameInputFontOptionsSize" oninput="FontSetChange()" type="number" value=""></span></li>
+	<li><span id="idSpanFontOptionsSpacing"><input id="idInputFontOptionsSpacing" name="nameInputFontOptionsSpacing" oninput="FontSetChange()" type="number" value=""></span></li>
+	<li><span id="idSpanFontOptionsVerticalOffset"><input id="idInputFontOptionsVerticalOffset" name="nameInputFontOptionsVerticalOffset" oninput="FontSetChange()" type="number" value=""></span></li>
 </ul>
 </div>
 
-<div id="DivIDOutputArea">
-<textarea id="TextareaIDOutput" name="TextareaNameOutput" readonly></textarea>
-	<div id="DivIDButton">
+<div id="idDivResult">
+<textarea id="idTextareaResult" name="nameTextareaResult" readonly></textarea>
+	<div id="idDivButtons">
 		<ul>
-			<li><input id="InputIDCopyButton" name="InputNameCopyButton" type="button" onclick="CopyText()" value="Copy All"></li>
-			<li><input id="InputIDSaveButton" name="InputNameSaveButton" type="button" onclick="SaveFile('font_data.xml')" style="display: none" value="Save File"></li>
+			<li><input id="idInputButtonsCopy" name="nameInputButtonsCopy" type="button" onclick="CopyText()" value="Copy All"></li>
+			<li><input id="idInputButtonsSave" name="nameInputButtonsSave" type="button" onclick="SaveFile('font_data.xml')" style="display: none" value="Save File"></li>
 		</ul>
 	</div>
 </div>
 
-<div id="DivIDBottom">
+<div id="idDivEnd">
 	<p>Language: 
-		<select id="SelectIDLanguage" name="SelectNameLanguage" onchange="LanguageSelected()">
+		<select id="idSelectLanguage" name="nameSelectLanguage" onchange="LanguageSelected()">
 			<option value="en" selected="">English</option>
 			<option value="tc">中文</option>
 		</select>
 	</p>
 	<p>The original converts code is from: <a href="https://bitbucket.org/Swyter/" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a>.</p>
-	<p>Last Update: 2020/11/22 by <a href="https://github.com/Darweille" target="_blank">Darweille</a>.</p>
+	<p>Last Update: 2020/12/11 by <a href="https://github.com/Darweille" target="_blank">Darweille</a>.</p>
 </div>
 
-<textarea id="TextareaIDInput" name="TextareaNameInput" cols="1" rows="1" oninput="Convert()" readonly="readonly" style="display: none"></textarea>
+<textarea id="idTextareaInput" name="nameTextareaInput" cols="1" rows="1" oninput="Convert()" readonly="readonly" style="display: none"></textarea>
 
-<input id="InputIDStringFileSelectArea" name="InputNameStringFileSelectArea"  oninput="StringChange()" type="number" value="0" style="display: none">
+<input id="idInputFileSelecterString" name="nameInputFileSelecterString"  oninput="StringChange()" type="number" value="0" style="display: none">
 
 <script type="text/javascript" src="converter.js"></script>
 </body>

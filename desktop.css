@@ -18,25 +18,25 @@ a:hover
 	color: #CBCBCB;
 }
 
-#DivIDTitle
+#idDivTitle
 {
 	font-size: 150%;
 	font-weight: bold;
 }
 
-#DivIDTitle p
+#idDivTitle p
 {
 	color: #ffffff;
 	text-shadow: 0pt 0pt 10pt #ffffff;
 	margin: 25pt auto 25pt auto;
 }
 
-#DivIDTitle p:hover
+#idDivTitle p:hover
 {
 	text-shadow: 0pt 0pt 20pt #ffffff;
 }
 
-#DivFileSelectArea
+#idDivFileSelecter
 {
 	width: 80%;
 	margin: 25pt auto 20pt auto;
@@ -45,37 +45,37 @@ a:hover
 	background: radial-gradient(ellipse at center, #B79D80, #7A5F4B);
 }
 
-#DivFileSelectArea:hover
+#idDivFileSelecter:hover
 {
 	border-radius: 32pt;
 	background: radial-gradient(ellipse at center, #C1A88C, #8B6F59);
 	cursor: pointer;
 }
 
-#DivFileSelectArea:active
+#idDivFileSelecter:active
 {
 	border-radius: 64pt;
 	background: radial-gradient(circle at center, #C1A88C, #8B6F59);
 }
 
-#PIDFileSelectArea
+#idPFileSelecter
 {
 	font-size: 125%;
 	padding: 15pt;
 }
 
-#DivIDFontSetting
+#idDivFontSetting
 {
 	margin: 20pt auto 20pt auto;
 }
 
-#DivIDFontSetting ul li
+#idDivFontSetting ul li
 {
 	display: inline-table;
 	margin: 10pt auto 10pt auto;
 }
 
-#DivIDFontSetting span
+#idDivFontSetting span
 {
 	color: #ffffff;
 	padding: 15pt;
@@ -83,12 +83,12 @@ a:hover
 	border-radius: 12pt 12pt 12pt 12pt;
 }
 
-#DivIDFontSetting span:hover
+#idDivFontSetting span:hover
 {
 	background-color: #69503D;
 }
 
-#DivIDFontSetting input
+#idDivFontSetting input
 {
 	color: #ffffff;
 	width: 55pt;
@@ -102,13 +102,13 @@ a:hover
 	outline: none;
 }
 
-#DivIDOutputArea
+#idDivResult
 {
 	display: none;
 	margin: 15pt auto 15pt auto;
 }
 
-#TextareaIDOutput
+#idTextareaResult
 {
 	width: 90%;
 	font-size: 125%;
@@ -121,13 +121,13 @@ a:hover
 	box-shadow: 1pt 1pt 8pt 1pt #000000;
 }
 
-#DivIDButton ul li
+#idDivButtons ul li
 {
 	display: inline-table;
 	padding: 10pt;
 }
 
-#DivIDButton input
+#idDivButtons input
 {
 	outline: none;
 	font-weight: bold;
@@ -142,7 +142,7 @@ a:hover
 	padding: 12pt;
 }
 
-#DivIDButton input:hover
+#idDivButtons input:hover
 {
 	text-shadow: 0pt 0pt 6pt #ffffff;
 	background: -webkit-linear-gradient(left top, #ffffff, #F3ECE7);
@@ -152,7 +152,7 @@ a:hover
 	cursor: pointer;
 }
 
-#DivIDButton input:active
+#idDivButtons input:active
 {
 	color: #ffffff;
 	text-decoration: none;
@@ -163,33 +163,33 @@ a:hover
 	box-shadow: 1pt 1pt 8pt 1pt #000000;
 }
 
-#DivIDBottom
+#idDivEnd
 {
 	border-top : 5pt groove #A68F75;
 	margin: 25pt auto auto auto;
 }
 
-#DivIDBottom p
+#idDivEnd p
 {
 	font-weight: bold;
 	color: #A68F75;
 	text-shadow: 0pt 0pt 3pt #000000;
 }
 
-#DivIDBottom p a
+#idDivEnd p a
 {
 	color: #A68F75;
 	text-shadow: 0pt 0pt 3pt #000000;
 	text-decoration: none;
 }
 
-#DivIDBottom p a:hover
+#idDivEnd p a:hover
 {
 	color: #CBB091;
 	text-decoration: none;
 }
 
-#SelectIDLanguage
+#idSelectLanguage
 {
 	background: #A68F75;
 	color: #000000;
@@ -201,14 +201,14 @@ a:hover
 	font-weight: bold;
 }
 
-#SelectIDLanguage:hover
+#idSelectLanguage:hover
 {
 	background: #BBAC9A;
 	color: #ffffff;
 	text-shadow: 0pt 0pt 3pt #000000;
 }
 
-#SelectIDLanguage option
+#idSelectLanguage option
 {
 	background: #A68F75;
 	color: #000000;

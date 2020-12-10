@@ -18,7 +18,7 @@ a:hover
 	color: #CBCBCB;
 }
 
-#DivFileSelectArea
+#idDivFileSelecter
 {
 	width: 90%;
 	margin: 30pt auto 10pt auto;
@@ -28,24 +28,24 @@ a:hover
 	padding: 8pt;
 }
 
-#PIDFileSelectArea
+#idPFileSelecter
 {
 	font-size: 125%;
 	padding: 15pt;
 }
 
-#DivIDFontSetting
+#idDivFontSetting
 {
 	margin: 10pt auto 15pt auto;
 	display: table;
 }
 
-#DivIDFontSetting p
+#idDivFontSetting p
 {
 	text-align: right;
 }
 
-#DivIDFontSetting span
+#idDivFontSetting span
 {
 	color: #ffffff;
 	padding: 15pt;
@@ -53,7 +53,7 @@ a:hover
 	border-radius: 12pt 12pt 12pt 12pt;
 }
 
-#DivIDFontSetting input
+#idDivFontSetting input
 {
 	color: #ffffff;
 	width: 100pt;
@@ -66,13 +66,13 @@ a:hover
 	outline: none;
 }
 
-#DivIDOutputArea
+#idDivResult
 {
 	display: none;
 	margin: 15pt auto 15pt auto;
 }
 
-#TextareaIDOutput
+#idTextareaResult
 {
 	font-size: 75%;
 	border: 2pt #000000;
@@ -83,12 +83,12 @@ a:hover
 	width: 95%;
 }
 
-#DivIDButton
+#idDivButtons
 {
 	margin: 15pt auto 15pt auto;
 }
 
-#DivIDButton input
+#idDivButtons input
 {
 	outline: none;
 	font-weight: bold;
@@ -104,27 +104,27 @@ a:hover
 	text-shadow: 1pt 1pt 1pt #DFDFDF;
 }
 
-#DivIDBottom
+#idDivEnd
 {
 	border-top : 5pt groove #A68F75;
 	margin: 30pt auto auto auto;
 }
 
-#DivIDBottom p
+#idDivEnd p
 {
 	font-weight: bold;
 	color: #A68F75;
 	text-shadow: 0pt 0pt 3pt #000000;
 }
 
-#DivIDBottom p a
+#idDivEnd p a
 {
 	color: #A68F75;
 	text-shadow: 0pt 0pt 3pt #000000;
 	text-decoration: none;
 }
 
-#SelectIDLanguage
+#idSelectLanguage
 {
 	background: #A68F75;
 	color: #000000;
@@ -136,7 +136,7 @@ a:hover
 	font-size: 150%;
 }
 
-#SelectIDLanguage option
+#idSelectLanguage option
 {
 	background: #A68F75;
 	color: #000000;

@@ -51,18 +51,18 @@ window.onload = function()
 	Initialization();
 
 	//取得字型調整選項的原始Span內容
-	SpanFontOptions[0] = document.getElementById("SpanIDFontOptionsSize").innerHTML;
-	SpanFontOptions[1] = document.getElementById("SpanIDFontOptionsSpacing").innerHTML;
-	SpanFontOptions[2] = document.getElementById("SpanIDFontOptionsVerticalOffset").innerHTML;
+	SpanFontOptions[0] = document.getElementById("idSpanFontOptionsSize").innerHTML;
+	SpanFontOptions[1] = document.getElementById("idSpanFontOptionsSpacing").innerHTML;
+	SpanFontOptions[2] = document.getElementById("idSpanFontOptionsVerticalOffset").innerHTML;
 
 	//偵測並決定語言
 	if (navigator.language.toLowerCase() == "zh-tw")
 	{
-		document.getElementById("SelectIDLanguage").value = "tc";
+		document.getElementById("idSelectLanguage").value = "tc";
 	}
 	else
 	{
-		document.getElementById("SelectIDLanguage").value = "en";
+		document.getElementById("idSelectLanguage").value = "en";
 	}
 	
 	LanguageSelected();
@@ -71,7 +71,7 @@ window.onload = function()
 //選擇語言後的動作
 function LanguageSelected()
 {
-	var SelectedLanguage = document.getElementById("SelectIDLanguage").value;
+	var SelectedLanguage = document.getElementById("idSelectLanguage").value;
 	
 	if (SelectedLanguage == "tc")
 	{
@@ -83,13 +83,13 @@ function LanguageSelected()
 	}
 	
 	//字型調整選項的文字
-	document.getElementById("SpanIDFontOptionsSize").innerHTML = LanguageString[10] + SpanFontOptions[0];
-	document.getElementById("SpanIDFontOptionsSpacing").innerHTML = LanguageString[11] + SpanFontOptions[1];
-	document.getElementById("SpanIDFontOptionsVerticalOffset").innerHTML = LanguageString[12] + SpanFontOptions[2];
+	document.getElementById("idSpanFontOptionsSize").innerHTML = LanguageString[10] + SpanFontOptions[0];
+	document.getElementById("idSpanFontOptionsSpacing").innerHTML = LanguageString[11] + SpanFontOptions[1];
+	document.getElementById("idSpanFontOptionsVerticalOffset").innerHTML = LanguageString[12] + SpanFontOptions[2];
 	
 	//全選複製按鈕、儲存檔案按鈕
-	document.getElementById("InputIDCopyButton").value = LanguageString[13];
-	document.getElementById("InputIDSaveButton").value = LanguageString[14];
+	document.getElementById("idInputButtonsCopy").value = LanguageString[13];
+	document.getElementById("idInputButtonsSave").value = LanguageString[14];
 	
 	StringChange();
 }
@@ -97,8 +97,8 @@ function LanguageSelected()
 //當文字選取區的訊息編號變動
 function StringChange()
 {
-	var FileSelectAreaTextStringNumber = document.getElementById("InputIDStringFileSelectArea").value;
-	document.getElementById("PIDFileSelectArea").innerHTML = LanguageString[FileSelectAreaTextStringNumber];
+	var FileSelectAreaTextStringNumber = document.getElementById("idInputFileSelecterString").value;
+	document.getElementById("idPFileSelecter").innerHTML = LanguageString[FileSelectAreaTextStringNumber];
 }
 
 //進行拖曳時的動作
@@ -133,11 +133,11 @@ function SelectFile()
 //當字型調整數值有變動的動作
 function FontSetChange()
 {
-	var FontSizeSet = document.getElementById("InputIDFontOptionsSize").value; //字型大小設定值
+	var FontSizeSet = document.getElementById("idInputFontOptionsSize").value; //字型大小設定值
 	
 	if (FontSizeSet != "" && FontSizeSet < 1)
 	{
-		document.getElementById("InputIDFontOptionsSize").value = 1; //使字型大小始終大於1
+		document.getElementById("idInputFontOptionsSize").value = 1; //使字型大小始終大於1
 	}
 	
 	if (InputFile != null)
@@ -150,10 +150,10 @@ function FontSetChange()
 //重置為初始狀態
 function Initialization()
 {
-	document.getElementById("InputIDStringFileSelectArea").value = 0;
+	document.getElementById("idInputFileSelecterString").value = 0;
 	StringChange();
-	document.getElementById("PIDFileSelectArea").style.color = "rgb(255,255,255)";
-	document.getElementById("DivIDOutputArea").style.display = "none";
+	document.getElementById("idPFileSelecter").style.color = "rgb(255,255,255)";
+	document.getElementById("idDivResult").style.display = "none";
 }
 
 //檢查檔案類型及大小
@@ -164,19 +164,19 @@ function FileCheck()
 	if (InputFile.name.substr(InputFile.name.lastIndexOf(".")) != ".fnt") //假如檔案不是FNT檔
 	{
 		InputFile = null; //清空檔案
-		document.getElementById("InputIDSelectFile").value = null;
-		document.getElementById("InputIDStringFileSelectArea").value = 1;
+		document.getElementById("idInputFileSelecter").value = null;
+		document.getElementById("idInputFileSelecterString").value = 1;
 		StringChange();
-		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
+		document.getElementById("idPFileSelecter").style.color = "rgb(255,0,0)";
 		FileSelectTextEffecter();
 	}
 	else if (InputFile.size > 10485760) //假如檔案大小超過 10MB
 	{
 		InputFile = null;
-		document.getElementById("InputIDSelectFile").value = null;
-		document.getElementById("InputIDStringFileSelectArea").value = 2;
+		document.getElementById("idInputFileSelecter").value = null;
+		document.getElementById("idInputFileSelecterString").value = 2;
 		StringChange();
-		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
+		document.getElementById("idPFileSelecter").style.color = "rgb(255,0,0)";
 		FileSelectTextEffecter();
 	}
 	else
@@ -184,13 +184,13 @@ function FileCheck()
 		//使用FileReader以Text格式解析輸入的檔案
 		var FNTReader = new FileReader();
 		
-		document.getElementById("InputIDStringFileSelectArea").value = 3;
+		document.getElementById("idInputFileSelecterString").value = 3;
 		StringChange();
 		
 		FNTReader.readAsText(InputFile);
 		FNTReader.onload = function()
 		{
-			document.getElementById("TextareaIDInput").value = this.result; //將解析內容儲存到TextareaIDInput
+			document.getElementById("idTextareaInput").value = this.result; //將解析內容儲存到idTextareaInput
 			Convert();
 		}
 	}
@@ -201,16 +201,16 @@ function Convert()
 {
 	Initialization();
 	
-	document.getElementById("InputIDStringFileSelectArea").value = 4;
+	document.getElementById("idInputFileSelecterString").value = 4;
 	StringChange();
 	
 	var OutputXMLCharacter = "";
 	
 	//使用DOMParser以XML格式解析內容
 	var Parser = new DOMParser();
-	var ParserData = document.getElementById("TextareaIDInput").value; //從TextareaIDInput讀取內容
+	var ParserData = document.getElementById("idTextareaInput").value; //從idTextareaInput讀取內容
 	
-	document.getElementById("InputIDStringFileSelectArea").value = 5;
+	document.getElementById("idInputFileSelecterString").value = 5;
 	StringChange();
 	
 	//開始轉換
@@ -230,9 +230,9 @@ function Convert()
 		var FontSpacingOutput = 0;
 		var FontVerticalOffsetOutput = 0;
 		
-		var FontSizeSet = document.getElementById("InputIDFontOptionsSize").value; //字型大小設定值
-		var FontSpacingSet = document.getElementById("InputIDFontOptionsSpacing").value; //字型間距設定值
-		var FontVerticalOffsetSet = document.getElementById("InputIDFontOptionsVerticalOffset").value; //垂直位移設定值
+		var FontSizeSet = document.getElementById("idInputFontOptionsSize").value; //字型大小設定值
+		var FontSpacingSet = document.getElementById("idInputFontOptionsSpacing").value; //字型間距設定值
+		var FontVerticalOffsetSet = document.getElementById("idInputFontOptionsVerticalOffset").value; //垂直位移設定值
 		
 		//字型大小的數值結果
 		if (FontSizeSet > 0) { FontSizeOutput = FontSizeSet; }
@@ -269,7 +269,7 @@ function Convert()
 		}
 		
 		//輸出所有轉換結果
-		document.getElementById("TextareaIDOutput").value = '<?xml version=1.0 encoding=UTF-8 ?>\n'
+		document.getElementById("idTextareaResult").value = '<?xml version=1.0 encoding=UTF-8 ?>\n'
 		+ '<FontData width='+InputFNTCommon.attributes["scaleW"].value+' height='+InputFNTCommon.attributes["scaleH"].value+' padding='+InputFNTInfo.attributes["padding"].value.split(',')[0] * 2+' font_size='+FontSizeOutput+' font_scale=100 line_spacing=100>\n'
 		+ '<FontDetails> \n'
 		+ OutputXMLCharacter
@@ -279,32 +279,32 @@ function Convert()
 		//判斷是否為重新轉換
 		if (ConvertAgain == true)
 		{
-			document.getElementById("InputIDStringFileSelectArea").value = 6;
+			document.getElementById("idInputFileSelecterString").value = 6;
 		}
 		else
 		{
-			document.getElementById("InputIDStringFileSelectArea").value = 7;
+			document.getElementById("idInputFileSelecterString").value = 7;
 		}
 		
 		ConvertAgain = false;
 		
-		document.getElementById("PIDFileSelectArea").style.color = "rgb(100,200,100)";
+		document.getElementById("idPFileSelecter").style.color = "rgb(100,200,100)";
 		
 		//字型調整的輸入有誤
 		if (FontSettingError > 0)
 		{
-			document.getElementById("InputIDStringFileSelectArea").value = 8;
-			document.getElementById("PIDFileSelectArea").style.color = "rgb(255,255,0)";
+			document.getElementById("idInputFileSelecterString").value = 8;
+			document.getElementById("idPFileSelecter").style.color = "rgb(255,255,0)";
 		}
 		
 		StringChange();
-		document.getElementById("InputIDSelectFile").value = null;
+		document.getElementById("idInputFileSelecter").value = null;
 		
 		//檔案選取區的文字訊息特效
 		FileSelectTextEffecter();
 		
 		//顯示轉換結果輸出區
-		document.getElementById("DivIDOutputArea").style.display = "inline";
+		document.getElementById("idDivResult").style.display = "inline";
 		
 		//轉換結果文字特效
 		OutputFileSelectTextEffecter();
@@ -312,15 +312,15 @@ function Convert()
 		//當瀏覽器是Chrome或Firefox時顯示儲存按鈕	
 		if (navigator.userAgent.indexOf("Chrome") != -1 || navigator.userAgent.indexOf("Firefox") != -1)
 		{
-			document.getElementById("InputIDSaveButton").style.display = "inline";
+			document.getElementById("idInputButtonsSave").style.display = "inline";
 		}
 	}
 	catch (e)
 	{
 		InputFile = null;
-		document.getElementById("InputIDSelectFile").value = null;
-		document.getElementById("InputIDStringFileSelectArea").value = 9;
-		document.getElementById("PIDFileSelectArea").style.color = "rgb(255,0,0)";
+		document.getElementById("idInputFileSelecter").value = null;
+		document.getElementById("idInputFileSelecterString").value = 9;
+		document.getElementById("idPFileSelecter").style.color = "rgb(255,0,0)";
 		StringChange();
 		FileSelectTextEffecter();
 	}
@@ -338,7 +338,7 @@ function FileSelectTextEffecter()
 function FileSelectTextEffects()
 {
 	//取得文字顏色資料
-	var FileSelectTextColorData = document.getElementById("PIDFileSelectArea").style.color.replace("rgb","").replace("(","").replace(")","").split(",");
+	var FileSelectTextColorData = document.getElementById("idPFileSelecter").style.color.replace("rgb","").replace("(","").replace(")","").split(",");
 	var FileSelectTextColorR = FileSelectTextColorData[0];
 	var FileSelectTextColorG = FileSelectTextColorData[1];
 	var FileSelectTextColorB = FileSelectTextColorData[2];
@@ -354,7 +354,7 @@ function FileSelectTextEffects()
 		if (FileSelectTextColorG > 255) { FileSelectTextColorG = 255; }
 		if (FileSelectTextColorB > 255) { FileSelectTextColorB = 255; }
 		
-		document.getElementById("PIDFileSelectArea").style.color = "rgb(" + FileSelectTextColorR + "," + FileSelectTextColorG + "," + FileSelectTextColorB + ")";
+		document.getElementById("idPFileSelecter").style.color = "rgb(" + FileSelectTextColorR + "," + FileSelectTextColorG + "," + FileSelectTextColorB + ")";
 	}
 	else
 	{
@@ -381,7 +381,7 @@ function OutputFileSelectTextEffects()
 	{
 		OutputTextOpacity += 0.07;
 		if (OutputTextOpacity > 1) { OutputTextOpacity = 1; } //防止溢位
-		document.getElementById("TextareaIDOutput").style.color = "rgba(255,255,255," + OutputTextOpacity + ")";
+		document.getElementById("idTextareaResult").style.color = "rgba(255,255,255," + OutputTextOpacity + ")";
 	}
 	else
 	{
@@ -393,7 +393,7 @@ function OutputFileSelectTextEffects()
 function CopyText()
 {
 	var OutputText = document.createRange();
-	var TextareaOutput = document.getElementById("TextareaIDOutput");
+	var TextareaOutput = document.getElementById("idTextareaResult");
 	
 	OutputText.selectNode(TextareaOutput); //先執行第一種選取方式
 	var Select = window.getSelection();
@@ -416,7 +416,7 @@ function AutoClick(Object)
 function SaveFile(FileName)
 {
 	var URLObject = window.URL || window.webkitURL || window;
-	var DataText = new Blob([document.getElementById("TextareaIDOutput").value]);
+	var DataText = new Blob([document.getElementById("idTextareaResult").value]);
 	var SaveLink = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
 	SaveLink.href = URLObject.createObjectURL(DataText);
 	SaveLink.download = FileName;
