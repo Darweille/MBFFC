@@ -1,7 +1,7 @@
 ﻿body
 {
 	text-align: center;
-	background-color: #7A5F4B;
+	background-color: #9D8069;
 	color: #ffffff;
 	text-shadow: 1pt 1pt 2pt #000000;
 	font-size: 15pt;
@@ -28,7 +28,7 @@ a:hover
 {
 	color: #ffffff;
 	text-shadow: 0pt 0pt 10pt #ffffff;
-	margin: 25pt auto 25pt auto;
+	margin: 20pt auto 20pt auto;
 }
 
 #idDivTitle p:hover
@@ -39,7 +39,7 @@ a:hover
 #idDivFileSelecter
 {
 	width: 80%;
-	margin: 25pt auto 20pt auto;
+	margin: 20pt auto 15pt auto;
 	border: dashed 3pt #3C2513;
 	border-radius: 24pt;
 	background: radial-gradient(ellipse at center, #B79D80, #7A5F4B);
@@ -66,7 +66,7 @@ a:hover
 
 #idDivFontSetting
 {
-	margin: 20pt auto 20pt auto;
+	margin: 15pt auto 15pt auto;
 }
 
 #idDivFontSetting ul li
@@ -166,19 +166,19 @@ a:hover
 #idDivEnd
 {
 	border-top : 5pt groove #A68F75;
-	margin: 25pt auto auto auto;
+	margin: 20pt auto auto auto;
 }
 
 #idDivEnd p
 {
 	font-weight: bold;
-	color: #A68F75;
+	color: #E3CBB0;
 	text-shadow: 0pt 0pt 3pt #000000;
 }
 
 #idDivEnd p a
 {
-	color: #A68F75;
+	color: #E3CBB0;
 	text-shadow: 0pt 0pt 3pt #000000;
 	text-decoration: none;
 }

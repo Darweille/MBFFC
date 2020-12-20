@@ -1,7 +1,7 @@
 ﻿body
 {
 	text-align: center;
-	background-color: #7A5F4B;
+	background-color: #9D8069;
 	color: #ffffff;
 	text-shadow: 2pt 2pt 3pt #000000;
 	font-size: 20pt;
@@ -113,13 +113,13 @@ a:hover
 #idDivEnd p
 {
 	font-weight: bold;
-	color: #A68F75;
+	color: #E3CBB0;
 	text-shadow: 0pt 0pt 3pt #000000;
 }
 
 #idDivEnd p a
 {
-	color: #A68F75;
+	color: #E3CBB0;
 	text-shadow: 0pt 0pt 3pt #000000;
 	text-decoration: none;
 }

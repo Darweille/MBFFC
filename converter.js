@@ -18,11 +18,12 @@ function LanguageTC()
 	LanguageString[7] = "轉換完畢";
 	LanguageString[8] = "轉換完畢<br /><br />字型調整的設定值無效，已自動改用預設值";
 	LanguageString[9] = "轉換失敗<br /><br />檔案內容可能有誤";
-	LanguageString[10] = "字型大小調整：";
-	LanguageString[11] = "字型間距調整：";
-	LanguageString[12] = "垂直位移調整：";
+	LanguageString[10] = "字型大小：";
+	LanguageString[11] = "字型間距：";
+	LanguageString[12] = "垂直位移：";
 	LanguageString[13] = "全選並複製";
 	LanguageString[14] = "儲存檔案";
+	LanguageString[15] = "行距調整：";
 }
 
 //變更字串為英文
@@ -38,11 +39,12 @@ function LanguageEN()
 	LanguageString[7] = "Convert done.";
 	LanguageString[8] = "Convert done.<br /><br />Font setting invalid. The setting has been changed to default.";
 	LanguageString[9] = "Convert failed.<br /><br />The file contents may incorrectly.";
-	LanguageString[10] = "Font Size Adjust: ";
-	LanguageString[11] = "Spacing Adjust: ";
-	LanguageString[12] = "Vertical Offset Adjust: ";
+	LanguageString[10] = "Font Size: ";
+	LanguageString[11] = "Spacing: ";
+	LanguageString[12] = "Vertical Offset: ";
 	LanguageString[13] = "Copy All";
 	LanguageString[14] = "Save File";
+	LanguageString[15] = "Line Spacing: ";
 }
 
 //頁面讀取完成時
@@ -54,6 +56,7 @@ window.onload = function()
 	SpanFontOptions[0] = document.getElementById("idSpanFontOptionsSize").innerHTML;
 	SpanFontOptions[1] = document.getElementById("idSpanFontOptionsSpacing").innerHTML;
 	SpanFontOptions[2] = document.getElementById("idSpanFontOptionsVerticalOffset").innerHTML;
+	SpanFontOptions[3] = document.getElementById("idSpanFontOptionsLineSpacing").innerHTML;
 
 	//偵測並決定語言
 	if (navigator.language.toLowerCase() == "zh-tw")
@@ -86,6 +89,7 @@ function LanguageSelected()
 	document.getElementById("idSpanFontOptionsSize").innerHTML = LanguageString[10] + SpanFontOptions[0];
 	document.getElementById("idSpanFontOptionsSpacing").innerHTML = LanguageString[11] + SpanFontOptions[1];
 	document.getElementById("idSpanFontOptionsVerticalOffset").innerHTML = LanguageString[12] + SpanFontOptions[2];
+	document.getElementById("idSpanFontOptionsLineSpacing").innerHTML = LanguageString[15] + SpanFontOptions[3];
 	
 	//全選複製按鈕、儲存檔案按鈕
 	document.getElementById("idInputButtonsCopy").value = LanguageString[13];
@@ -134,10 +138,16 @@ function SelectFile()
 function FontSetChange()
 {
 	var FontSizeSet = document.getElementById("idInputFontOptionsSize").value; //字型大小設定值
+	var FontLineSpacingSet = document.getElementById("idInputFontOptionsLineSpacing").value; //行距設定值
 	
 	if (FontSizeSet != "" && FontSizeSet < 1)
 	{
 		document.getElementById("idInputFontOptionsSize").value = 1; //使字型大小始終大於1
+	}
+	
+	if (FontLineSpacingSet < 1)
+	{
+		document.getElementById("idInputFontOptionsLineSpacing").value = 1;
 	}
 	
 	if (InputFile != null)
@@ -229,10 +239,12 @@ function Convert()
 		var FontSizeOutput = InputFNTInfo.attributes["size"].value; //字型大小預設值
 		var FontSpacingOutput = 0;
 		var FontVerticalOffsetOutput = 0;
+		var FontLineSpacingOutput = 100;
 		
 		var FontSizeSet = document.getElementById("idInputFontOptionsSize").value; //字型大小設定值
 		var FontSpacingSet = document.getElementById("idInputFontOptionsSpacing").value; //字型間距設定值
 		var FontVerticalOffsetSet = document.getElementById("idInputFontOptionsVerticalOffset").value; //垂直位移設定值
+		var FontLineSpacingSet = document.getElementById("idInputFontOptionsLineSpacing").value; //行距設定值
 		
 		//字型大小的數值結果
 		if (FontSizeSet > 0) { FontSizeOutput = FontSizeSet; }
@@ -245,6 +257,10 @@ function Convert()
 		//垂直位移的數值結果
 		if (FontVerticalOffsetSet >= 0 || FontVerticalOffsetSet < 0) { FontVerticalOffsetOutput = FontVerticalOffsetSet; }
 		else if (FontVerticalOffsetSet != "") { FontSettingError += 1; }
+		
+		//垂直位移的數值結果
+		if (FontLineSpacingSet > 0) { FontLineSpacingOutput = FontLineSpacingSet; }
+		else if (FontLineSpacingSet != "") { FontSettingError += 1; }
 		
 		//轉換char的格式
 		for (obj in InputFNTChar)
@@ -270,7 +286,7 @@ function Convert()
 		
 		//輸出所有轉換結果
 		document.getElementById("idTextareaResult").value = '<?xml version=1.0 encoding=UTF-8 ?>\n'
-		+ '<FontData width='+InputFNTCommon.attributes["scaleW"].value+' height='+InputFNTCommon.attributes["scaleH"].value+' padding='+InputFNTInfo.attributes["padding"].value.split(',')[0] * 2+' font_size='+FontSizeOutput+' font_scale=100 line_spacing=100>\n'
+		+ '<FontData width='+InputFNTCommon.attributes["scaleW"].value+' height='+InputFNTCommon.attributes["scaleH"].value+' padding='+InputFNTInfo.attributes["padding"].value.split(',')[0] * 2+' font_size='+FontSizeOutput+' font_scale=100 line_spacing='+FontLineSpacingOutput+'>\n'
 		+ '<FontDetails> \n'
 		+ OutputXMLCharacter
 		+ '</FontDetails>\n'
