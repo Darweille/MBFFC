@@ -4,22 +4,16 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 <meta content="zh-tw" http-equiv="Content-Language">
 <title>Darweille's MnB FNT to XML Format Converter</title>
-<link rel="stylesheet" type="text/css" href="desktop.css?202210211705">
+<link rel="stylesheet" type="text/css" href="desktop.css?202210220648">
 </head>
 <body>
 
-<!-- 頂層標題及語言選擇 -->
+<!-- 頂部 -->
 <div id="divTopFloor">
 	<span id="spanTitle">Mount&amp;Blade FNT to XML Format Converter</span>
-	<p id="pLanguage">
-		<select id="selectLanguage" name="LanguageSelecter" onchange="LanguageSelected()">
-			<option value="en" selected="">English</option>
-			<option value="tc">中文</option>
-		</select>
-	</p>
 </div>
 
-<!-- 主內容層 -->
+<!-- 主內容 -->
 <div id="divMainFloor">
 
 	<!-- 檔案選擇區 -->
@@ -37,6 +31,7 @@
 		<label for="inputFontLineSpacing"><span id="spanFontLineSpacing"><input id="inputFontLineSpacing" name="FontLineSpacing" oninput="FontSetChange()" type="number" value="100"></span></label>
 	</div>
 	
+	<!-- 訊息區 -->
 	<div id="divMessage">
 		<p id="pMessage"></p>
 	</div>
@@ -46,26 +41,39 @@
 		<textarea id="textareaResult" name="Result" readonly></textarea>
 		
 		<div id="divButtons">
-			<input id="inputCopyButton" name="CopyButton" type="button" onclick="CopyText()" value="Copy All">
-			<input id="inputSaveButton" name="SaveButton" type="button" onclick="SaveFile('font_data.xml')" value="Save File">
+			<span><input id="inputCopyButton" name="CopyButton" type="button" onclick="CopyText()" value="Copy All"></span>
+			<span><input id="inputSaveButton" name="SaveButton" type="button" onclick="SaveFile('font_data.xml')" value="Save File"></span>
 		</div>
 	</div>	
 </div>
 
+<!-- 底部 -->
 <div id="divBottomFloor">
+	
+	<!-- 資訊區 -->
 	<div id="divBottomInfo">
 		<ul>References:
 			<li><a href="https://bitbucket.org/Swyter/" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a>.</li>
 			<li><a href="https://mbmwarbandmodding.proboards.com/thread/4/create-fonts-mount-blade-swyter" target="_blank">Create your own fonts in Mount&amp;Blade - By Swyter</a>.</li>
 		</ul>
-		<p>Version: 1.0.2 - Last update on 2022/10/21 by <a href="https://github.com/Darweille" target="_blank">Darweille</a>.</p>
+		<p>Version: 1.0.3 - Last update on 2022/10/22 by <a href="https://github.com/Darweille" target="_blank">Darweille</a>.</p>
 	</div>
+	
+	<!-- 語言選擇 -->
+	<span id="spanLanguage">
+		<select id="selectLanguage" name="LanguageSelecter" onchange="LanguageSelected()">
+			<option value="en" selected="">English</option>
+			<option value="tc">中文</option>
+		</select>
+	</span>
 </div>
 
-<textarea id="textareaContents" name="Contents" cols="1" rows="1" oninput="Convert()" readonly="readonly" style="display: none"></textarea>
+<!-- 隱藏區 -->
+<div id="divHiddenFloor">
+	<textarea id="textareaContents" name="Contents" cols="1" rows="1" oninput="Convert()" readonly="readonly" style="display: none"></textarea>
+	<input id="numberMessage" name="MessageNumber" oninput="StringChange()" type="number" value="0" style="display: none">
+</div>
 
-<input id="numberMessage" name="MessageNumber" oninput="StringChange()" type="number" value="0" style="display: none">
-
-<script type="text/javascript" src="converter.js?202210211705"></script>
+<script type="text/javascript" src="converter.js?202210220648"></script>
 </body>
 </html>

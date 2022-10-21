@@ -1,21 +1,15 @@
-﻿body
+﻿html
+{
+	font-size: 3em;
+}
+
+body
 {
 	background-color: #A48E6E;
 	background-image: url('bg3.png');
 	color: #ffffff;
 	text-shadow: 1pt 1pt 2pt #000000;
-	font-size: 16pt;
 	margin: 0;
-}
-
-a, a:visited, a:active
-{
-	color: #ffffff;
-}
-
-a:hover
-{
-	color: #CBCBCB;
 }
 
 #divTopFloor
@@ -25,84 +19,51 @@ a:hover
 	text-align: center;
 }
 
+#divMainFloor
+{
+	padding: 36pt;
+	text-align: center;
+}
+
+#divBottomFloor
+{
+	text-align: center;
+	border-top : 5pt groove rgba(145, 125, 105, 0.5);
+	padding: 0 24pt 24pt 24pt;
+}
+
+#divHiddenFloor
+{
+	display: none;
+}
+
 #spanTitle
 {
 	font-size: 150%;
 	font-weight: bold;
 	color: rgba(25, 20, 15, 0.9);
-	text-shadow: 1pt 1pt 5pt rgba(120, 115, 110, 0.8);
-}
-
-#pLanguage
-{
-	position: absolute;
-	right: 24pt;
-	top: 5pt;
-}
-
-	/* 解析度 <= 960 */
-	@media (max-width: 960px)
-	{
-		#pLanguage
-		{
-			position: relative;
-			right: auto;
-			top: auto;
-		}
-	}
-
-#selectLanguage
-{
-	font-weight: bold;
-	background: rgba(165, 145, 120, 0.5);
-	color: rgba(0, 0, 0, 0.9);
-	font-size: 100%;
-	text-shadow: 0pt 0pt 3pt rgba(255, 255, 255, 0.8);
-	padding: 5pt;
-	box-shadow: 0pt 0pt 5pt 0pt rgba(0, 0, 0, 0.8);
-	border-radius: 10pt;
-}
-
-
-#divMainFloor
-{
-	padding: 20pt;
-	text-align: center;
+	text-shadow: -1pt -2pt 5pt rgba(120, 115, 110, 0.8);
 }
 
 #divFileSelecter
 {
 	display: inline-block;
 	padding: 1pt 32pt 1pt 32pt;
-	border: 3pt outset rgba(60, 40, 20, 0.5);
+	border: 9pt outset rgba(60, 40, 20, 0.5);
 	border-radius: 24pt;
 	background: radial-gradient(ellipse at center, rgba(185, 155, 125, 0.1), rgba(125, 95, 75, 0.7));
 	font-size: 125%;
 }
 
-#divFileSelecter:hover
-{
-	cursor: pointer;
-	background: radial-gradient(ellipse at center, rgba(195, 170, 140, 0.5), rgba(140, 110, 90, 0.7));
-}
-
-#divFileSelecter:active
-{
-	border: 3pt inset rgba(60, 40, 20, 0.5);
-	background: radial-gradient(ellipse at center, rgba(195, 170, 140, 0.5), rgba(140, 110, 90, 0.7));
-	position: relative;
-	top: 1pt;
-	left: 1pt;
-}
-
 #divFontSetting
 {
+	font-size: 125%;
 	margin-top: 14pt;
 }
 
 #divFontSetting span
 {
-	padding: 12pt;
+	padding: 18pt;
 	border-radius: 12pt;
 	display: inline-block;
 }
@@ -116,7 +77,7 @@ a:hover
 {
 	color: #ffffff;
 	text-shadow: 1pt 1pt 2pt #000000;
-	width: 64pt;
+	width: 200pt;
 	font-size: 100%;
 	background-color: transparent;
 	border-color: transparent transparent transparent transparent;
@@ -128,7 +89,7 @@ a:hover
 #divMessage
 {
 	display: none;
-	padding: 0 25pt 0 25pt;
+	padding: 0 50pt 0 50pt;
   	border-radius: 24pt;
 	background: rgba(0, 0, 0, 0.3);
 	font-size: 100%;
@@ -137,80 +98,48 @@ a:hover
 
 #textareaResult
 {
-	font-size: 12pt;
-	border: 0px;
+	font-size: 33%;
+	border: 0;
 	border-radius: 6pt;
 	padding: 8pt;
-	width: 800px;
-	height: 180px;
+	width: 95%;
+	height: 300pt;
 	background-color: rgba(40, 20, 0, 0.5);
 	box-shadow: 1pt 1pt 8pt 1pt rgba(100, 80, 60, 0.5);
 	margin-top: 15pt;
 }
-
-	/* 解析度 <= 1024 */
-	@media (max-width: 1024px)
-	{
-		#textareaResult
-		{
-			width: 90%;
-		}
-	}
 
 #divButtons
 {
 	margin-top: 15pt;
 }
 
+#divButtons span
+{
+	display: inline-block;
+	padding: 0 24pt 0 24pt;
+}
+
 #divButtons input
 {
 	outline: none;
 	font-weight: bold;
-	font-size: 100%;
+	font-size: 125%;
 	border-radius: 12pt;
 	background: linear-gradient(to left top, rgba(210, 195, 185, 0.3), rgba(255, 255, 255, 0.3));
 	box-shadow: 2pt 2pt 2pt 2pt rgba(45, 35, 20, 0.5);
 	text-shadow: 1pt 1pt 1pt rgba(180, 160, 140, 0.8);
-	padding: 9pt 24pt 9pt 24pt;
+	padding: 10pt 30pt 10pt 30pt;
 	border: 1pt soild rgba(0, 0, 0, 0.5);
-}
-
-#divButtons input:hover
-{
-	text-shadow: 0pt 0pt 6pt #ffffff;
-	background: linear-gradient(to left top, rgba(255, 255, 255, 0.5), rgba(245, 235, 230, 0.5));
-	cursor: pointer;
-}
-
-#divButtons input:active
-{
-	text-decoration: none;
-	position: relative;
-	top: 1pt;
-	left: 1pt;
-	text-shadow: 0pt 0pt 6pt #A5A5A5;
-	box-shadow: 1pt 1pt 8pt 1pt rgba(0, 0, 0, 0.5);
-}
-
-#inputCopyButton
-{
-	margin-right: 15pt;
-}
-
-#divBottomFloor
-{
-	text-align: center;
-	border-top : 5pt groove rgba(145, 125, 105, 0.5);
 }
 
 #divBottomInfo
 {
 	font-weight: bold;
-	font-size: 90%;
+	font-size: 80%;
 	color: rgba(180, 155, 125, 0.7);
 	text-shadow: -1pt -1pt 1pt rgba(50, 40, 30, 0.7);
 	display: inline-block;
-	padding: 0 10pt 0 10pt;
 }
 
 #divBottomInfo ul
@@ -224,8 +153,137 @@ a:hover
 	text-decoration: none;
 }
 
-#divBottomInfo a:hover
+#spanLanguage
 {
-	color: rgba(230, 205, 180, 0.8);
-	text-shadow: 1pt 1pt 3pt #000000;
+	position: relative;
+	right: auto;
+	top: auto;
+}
+
+#selectLanguage
+{
+	font-size: 150%;
+	font-weight: bold;
+	background: rgba(165, 145, 120, 0.5);
+	padding: 15pt;
+	border-color: black;
+	border-radius: 10pt;
+}
+
+/* 解析度 寬度 >= 1024 */
+@media (min-width: 1024px)
+{
+	html
+	{
+		font-size: 1.5em;
+	}
+	
+	#divMainFloor
+	{
+		padding: 20pt;
+	}
+	
+	#divBottomFloor
+	{
+		padding: 0 24pt 1pt 24pt;
+	}
+	
+	#divFileSelecter
+	{
+		border: 3pt outset rgba(60, 40, 20, 0.5);
+	}
+	
+	#divFileSelecter:hover
+	{
+		cursor: pointer;
+		background: radial-gradient(ellipse at center, rgba(195, 170, 140, 0.5), rgba(140, 110, 90, 0.7));
+	}
+	
+	#divFileSelecter:active
+	{
+		border: 3pt inset rgba(60, 40, 20, 0.5);
+		background: radial-gradient(ellipse at center, rgba(195, 170, 140, 0.5), rgba(140, 110, 90, 0.7));
+		position: relative;
+		top: 1pt;
+		left: 1pt;
+	}
+	
+	#divFontSetting
+	{
+		font-size: 100%;
+	}
+	
+	#divFontSetting span
+	{
+		padding: 10pt;
+	}
+
+	#divFontSetting input
+	{
+		width: 64pt;
+	}
+
+	#divMessage
+	{
+		padding: 0 25pt 0 25pt;
+	}
+
+	#textareaResult
+	{
+		font-size: 80%;
+		width: 800px;
+		height: 153px;
+	}
+	
+	#divButtons input
+	{
+		font-size: 100%;
+		padding: 9pt 24pt 9pt 24pt;
+	}
+	
+	#divBottomInfo a:hover
+	{
+		color: rgba(230, 205, 180, 0.8);
+		text-shadow: 1pt 1pt 3pt #000000;
+	}
+	
+	#divButtons input:hover
+	{
+		text-shadow: 0pt 0pt 6pt #ffffff;
+		background: linear-gradient(to left top, rgba(255, 255, 255, 0.5), rgba(245, 235, 230, 0.5));
+		cursor: pointer;
+	}
+	
+	#divButtons input:active
+	{
+		text-decoration: none;
+		position: relative;
+		top: 1pt;
+		left: 1pt;
+		text-shadow: 0pt 0pt 6pt #A5A5A5;
+		box-shadow: 1pt 1pt 8pt 1pt rgba(0, 0, 0, 0.5);
+	}
+	
+	#spanLanguage
+	{
+		position: absolute;
+		right: 18pt;
+		top: 20pt;
+	}
+	
+	#selectLanguage
+	{
+		font-size: 100%;
+		padding: 5pt;
+	}
+}
+
+/* 解析度 寬度 >= 1184 */
+@media (min-width: 1184px)
+{
+	#spanLanguage
+	{
+		right: 24pt;
+		top: 20pt;
+	}
 }
