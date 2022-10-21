@@ -65,45 +65,18 @@ window.onload = function()
 	SpanFontOptions[2] = document.getElementById("spanFontVerticalOffset").innerHTML;
 	SpanFontOptions[3] = document.getElementById("spanFontLineSpacing").innerHTML;
 
-	//判斷Cookie裡面有無語言紀錄
-	var AllCookieArray = document.cookie.split(";"); //取得全部Cookie並解析為陣列
-	
-	var CookieNumber = -1;
-	var CookieData = 0;
-	
-	//搜尋全部的Cookie
-	for (count=0; count<AllCookieArray.length; count++)
-	{
-		var CookieName = AllCookieArray[count].split("=");
-		if (CookieName[0] == "language")
-		{
-			CookieNumber = count;
-		}
-	}
 
-	//若有找到Cookie
-	if (CookieNumber != -1)
+	//偵測並決定語言
+	if (navigator.language.toLowerCase() == ("zh-tw"||"zh-cn"||"zh-hk"||"zh-sg"))
 	{
-		CookieData = AllCookieArray[CookieNumber].split("=")[1]; //讀取數值
+		document.getElementById("selectLanguage").value = "tc";
 	}
-
-	//Cookie內沒有資料
-	if (CookieData != 1)
+	else
 	{
-		//偵測並決定語言
-		if (navigator.language.toLowerCase() == ("zh-tw"||"zh-cn"||"zh-hk"||"zh-sg"))
-		{
-			document.getElementById("selectLanguage").value = "tc";
-			document.cookie = 'language=tc; max-age=3600'; //使用Cookie記錄使用語言
-		}
-		else
-		{
-			document.getElementById("selectLanguage").value = "en";
-			document.cookie = 'language=en; max-age=3600'; //使用Cookie記錄使用語言
-		}
-		
-		LanguageSelected();
+		document.getElementById("selectLanguage").value = "en";
 	}
+	
+	LanguageSelected();
 }
 
 //選擇語言後的動作
