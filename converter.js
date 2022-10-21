@@ -50,7 +50,7 @@ function LanguageEN()
 	LanguageString[15] = "Line Spacing: ";
 	LanguageString[16] = "Click here to select a file, or drag a file on page to start";
 	LanguageString[17] = "The contents already copied to clipboard.";
-	LanguageString[18] = "The file 'font_data.xml' has created and downloading.";
+	LanguageString[18] = "The file 'font_data.xml' has started download to your device.";
 
 }
 

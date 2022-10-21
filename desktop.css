@@ -1,10 +1,10 @@
 ﻿body
 {
 	background-color: #A48E6E;
-	background-image: url('bg1.png');
+	background-image: url('bg3.png');
 	color: #ffffff;
-	text-shadow: 1px 1px 2px #000000;
-	font-size: 15pt;
+	text-shadow: 1pt 1pt 2pt #000000;
+	font-size: 16pt;
 	margin: 0;
 }
 
@@ -20,21 +20,24 @@ a:hover
 
 #divTopFloor
 {
-	background-image: url('bg2.png');
-	padding: 20px;
+	background-image: url('bg4.png');
+	padding: 20pt;
 	text-align: center;
 }
 
 #spanTitle
 {
 	font-size: 150%;
+	font-weight: bold;
+	color: rgba(25, 20, 15, 0.9);
+	text-shadow: 1pt 1pt 5pt rgba(120, 115, 110, 0.8);
 }
 
 #pLanguage
 {
 	position: absolute;
-	right: 25px;
-	top: 0px;
+	right: 24pt;
+	top: 5pt;
 }
 
 	/* 解析度 <= 960 */
@@ -50,28 +53,29 @@ a:hover
 
 #selectLanguage
 {
-	background: rgba(166, 143, 117, 0.5);
-	color: #000000;
+	font-weight: bold;
+	background: rgba(165, 145, 120, 0.5);
+	color: rgba(0, 0, 0, 0.9);
 	font-size: 100%;
-	text-shadow: 0px 0px 3px #ffffff;
-	padding: 5px;
-	box-shadow: 0px 0px 2px 0px #000000;
-	border-radius: 10px;
+	text-shadow: 0pt 0pt 3pt rgba(255, 255, 255, 0.8);
+	padding: 5pt;
+	box-shadow: 0pt 0pt 5pt 0pt rgba(0, 0, 0, 0.8);
+	border-radius: 10pt;
 }
 
 
 #divMainFloor
 {
-	padding: 20px;
+	padding: 20pt;
 	text-align: center;
 }
 
 #divFileSelecter
 {
 	display: inline-block;
-	padding: 1px 24px 1px 24px;
-	border: 5px outset rgba(60, 37, 19, 0.5);
-	border-radius: 24px;
+	padding: 1pt 32pt 1pt 32pt;
+	border: 3pt outset rgba(60, 40, 20, 0.5);
+	border-radius: 24pt;
 	background: radial-gradient(ellipse at center, rgba(185, 155, 125, 0.1), rgba(125, 95, 75, 0.7));
 	font-size: 125%;
 }
@@ -84,38 +88,39 @@ a:hover
 
 #divFileSelecter:active
 {
-	border: 5px inset rgba(60, 37, 19, 0.5);
+	border: 3pt inset rgba(60, 40, 20, 0.5);
 	background: radial-gradient(ellipse at center, rgba(195, 170, 140, 0.5), rgba(140, 110, 90, 0.7));
 	position: relative;
-	top: 1px;
-	left: 1px;
+	top: 1pt;
+	left: 1pt;
 }
 
 #divFontSetting
 {
-	margin-top: 15px;
+	margin-top: 14pt;
 }
 
 #divFontSetting span
 {
-	padding: 12px;
-	border-radius: 12px;
+	padding: 12pt;
+	border-radius: 12pt;
 	display: inline-block;
 }
 
 #divFontSetting span:hover
 {
-	background: rgba(90, 70, 60, 0.6);
+	background: rgba(190, 170, 160, 0.3);
 }
 
 #divFontSetting input
 {
 	color: #ffffff;
-	text-shadow: 1px 1px 2px #000000;
-	width: 64px;
+	text-shadow: 1pt 1pt 2pt #000000;
+	width: 64pt;
 	font-size: 100%;
 	background-color: transparent;
-	border-color: transparent transparent rgba(90, 70, 60, 0.9) transparent;
+	border-color: transparent transparent transparent transparent;
+	border-bottom : 2pt groove rgba(250, 250, 250, 0.5);
 	outline: none;
 	text-align:center;
 }
@@ -123,24 +128,24 @@ a:hover
 #divMessage
 {
 	display: none;
-	padding: 1px 128px 1px 128px;
-  	border-radius: 24px;
+	padding: 0 25pt 0 25pt;
+  	border-radius: 24pt;
 	background: rgba(0, 0, 0, 0.3);
 	font-size: 100%;
-	margin: 15px auto 15px auto;
+	margin-top: 15pt;
 }
 
 #textareaResult
 {
-	font-size: 100%;
-	border: 3px rgba(100, 80, 60, 0.5);
-	border-radius: 6px;
-	padding: 10px;
-	width: 1024px;
-	height: 200px;
-	background-color: rgba(100, 80, 60, 0.5);
-	color: #ffffff;
-	box-shadow: 1px 1px 8px 1px rgba(100, 80, 60, 0.5);
+	font-size: 12pt;
+	border: 0px;
+	border-radius: 6pt;
+	padding: 8pt;
+	width: 800px;
+	height: 180px;
+	background-color: rgba(40, 20, 0, 0.5);
+	box-shadow: 1pt 1pt 8pt 1pt rgba(100, 80, 60, 0.5);
+	margin-top: 15pt;
 }
 
 	/* 解析度 <= 1024 */
@@ -154,25 +159,25 @@ a:hover
 
 #divButtons
 {
-	margin-top: 15px;
+	margin-top: 15pt;
 }
 
 #divButtons input
 {
 	outline: none;
 	font-weight: bold;
-	font-size: 125%;
-	border-radius: 12px;
+	font-size: 100%;
+	border-radius: 12pt;
 	background: linear-gradient(to left top, rgba(210, 195, 185, 0.3), rgba(255, 255, 255, 0.3));
-	box-shadow: 2px 2px 2px 2px rgba(45, 35, 20, 0.5);
-	text-shadow: 1px 1px 1px #DFDFDF;
-	padding: 9px 24px 9px 24px;
-	border: 1px soild rgba(0, 0, 0, 0.5);
+	box-shadow: 2pt 2pt 2pt 2pt rgba(45, 35, 20, 0.5);
+	text-shadow: 1pt 1pt 1pt rgba(180, 160, 140, 0.8);
+	padding: 9pt 24pt 9pt 24pt;
+	border: 1pt soild rgba(0, 0, 0, 0.5);
 }
 
 #divButtons input:hover
 {
-	text-shadow: 0px 0px 6px #ffffff;
+	text-shadow: 0pt 0pt 6pt #ffffff;
 	background: linear-gradient(to left top, rgba(255, 255, 255, 0.5), rgba(245, 235, 230, 0.5));
 	cursor: pointer;
 }
@@ -181,41 +186,46 @@ a:hover
 {
 	text-decoration: none;
 	position: relative;
-	top: 1px;
-	left: 1px;
-	text-shadow: 0px 0px 6px #A5A5A5;
-	box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.5);
+	top: 1pt;
+	left: 1pt;
+	text-shadow: 0pt 0pt 6pt #A5A5A5;
+	box-shadow: 1pt 1pt 8pt 1pt rgba(0, 0, 0, 0.5);
 }
 
 #inputCopyButton
 {
-	margin-right: 15px;
+	margin-right: 15pt;
 }
 
 #divBottomFloor
 {
 	text-align: center;
-	border-top : 5px groove #A68F75;
-	padding: 10px;
+	border-top : 5pt groove rgba(145, 125, 105, 0.5);
 }
 
 #divBottomInfo
 {
 	font-weight: bold;
-	color: rgba(230, 205, 180, 0.8);
-	text-shadow: 1px 1px 2px #000000;
+	font-size: 90%;
+	color: rgba(180, 155, 125, 0.7);
+	text-shadow: -1pt -1pt 1pt rgba(50, 40, 30, 0.7);
 	display: inline-block;
+	padding: 0 10pt 0 10pt;
+}
+
+#divBottomInfo ul
+{
 	text-align: left;
 }
 
 #divBottomInfo a
 {
-	color: rgba(230, 205, 180, 0.8);
+	color: rgba(180, 155, 125, 0.7);
 	text-decoration: none;
 }
 
 #divBottomInfo a:hover
 {
-	color: rgba(200, 175, 145, 0.9);
-	text-shadow: 1px 1px 3px #000000;
+	color: rgba(230, 205, 180, 0.8);
+	text-shadow: 1pt 1pt 3pt #000000;
 }
