@@ -5,36 +5,17 @@
 
 body
 {
-	background-color: #A48E6E;
+	background-color: #5C4D3E;
 	background-image: url('bg3.png');
 	color: #ffffff;
-	text-shadow: 1pt 1pt 2pt #000000;
 	margin: 0;
 }
 
 #divTopFloor
 {
 	background-image: url('bg4.png');
-	padding: 20pt;
+	padding: 15pt;
 	text-align: center;
-}
-
-#divMainFloor
-{
-	padding: 36pt;
-	text-align: center;
-}
-
-#divBottomFloor
-{
-	text-align: center;
-	border-top : 5pt groove rgba(145, 125, 105, 0.5);
-	padding: 0 24pt 24pt 24pt;
-}
-
-#divHiddenFloor
-{
-	display: none;
 }
 
 #spanTitle
@@ -43,6 +24,12 @@ body
 	font-weight: bold;
 	color: rgba(25, 20, 15, 0.9);
 	text-shadow: -1pt -2pt 5pt rgba(120, 115, 110, 0.8);
+}
+
+#divMainFloor
+{
+	padding: 36pt;
+	text-align: center;
 }
 
 #divFileSelecter
@@ -57,6 +44,7 @@ body
 
 #divFontSetting
 {
+	display: none;
 	font-size: 125%;
 	margin-top: 14pt;
 }
@@ -133,12 +121,19 @@ body
 	border: 1pt soild rgba(0, 0, 0, 0.5);
 }
 
+#divBottomFloor
+{
+	text-align: center;
+	border-top : 5pt groove rgba(145, 125, 105, 0.5);
+	padding: 10pt 25pt 25pt 25pt;
+}
+
 #divBottomInfo
 {
 	font-weight: bold;
-	font-size: 80%;
-	color: rgba(180, 155, 125, 0.7);
-	text-shadow: -1pt -1pt 1pt rgba(50, 40, 30, 0.7);
+	font-size: 75%;
+	color: rgba(180, 155, 125, 0.8);
+	text-shadow: 2pt 2pt 4pt rgba(50, 40, 30, 0.8);
 	display: inline-block;
 }
 
@@ -149,15 +144,13 @@ body
 
 #divBottomInfo a
 {
-	color: rgba(180, 155, 125, 0.7);
+	color: rgba(180, 155, 125, 0.8);
 	text-decoration: none;
 }
 
-#spanLanguage
+#pLanguage
 {
-	position: relative;
-	right: auto;
-	top: auto;
+	margin-top: 0pt;
 }
 
 #selectLanguage
@@ -170,24 +163,24 @@ body
 	border-radius: 10pt;
 }
 
-/* 解析度 寬度 >= 1024 */
-@media (min-width: 1024px)
+#divHiddenFloor
+{
+	display: none;
+}
+
+/* 裝置的解析度寬度 >= 1024 */
+@media (min-device-width: 1024px)
 {
 	html
 	{
 		font-size: 1.5em;
 	}
-	
+		
 	#divMainFloor
 	{
 		padding: 20pt;
 	}
-	
-	#divBottomFloor
-	{
-		padding: 0 24pt 1pt 24pt;
-	}
-	
+		
 	#divFileSelecter
 	{
 		border: 3pt outset rgba(60, 40, 20, 0.5);
@@ -240,13 +233,7 @@ body
 		font-size: 100%;
 		padding: 9pt 24pt 9pt 24pt;
 	}
-	
-	#divBottomInfo a:hover
-	{
-		color: rgba(230, 205, 180, 0.8);
-		text-shadow: 1pt 1pt 3pt #000000;
-	}
-	
+		
 	#divButtons input:hover
 	{
 		text-shadow: 0pt 0pt 6pt #ffffff;
@@ -264,11 +251,27 @@ body
 		box-shadow: 1pt 1pt 8pt 1pt rgba(0, 0, 0, 0.5);
 	}
 	
-	#spanLanguage
+	#divBottomFloor
 	{
-		position: absolute;
-		right: 18pt;
-		top: 20pt;
+		padding: 0 24pt 1pt 24pt;
+	}
+	
+	#divBottomInfo
+	{
+		font-size: 80%;
+		color: rgba(180, 155, 125, 0.6);
+		text-shadow: -1pt -1pt 1pt rgba(50, 40, 30, 0.7);
+	}
+	
+	#divBottomInfo a
+	{
+		color: rgba(180, 155, 125, 0.6);
+	}
+	
+	#divBottomInfo a:hover
+	{
+		color: rgba(230, 205, 180, 0.8);
+		text-shadow: 1pt 1pt 3pt #000000;
 	}
 	
 	#selectLanguage
@@ -278,12 +281,14 @@ body
 	}
 }
 
-/* 解析度 寬度 >= 1184 */
-@media (min-width: 1184px)
+/* 視窗的寬度 >= 1056 */
+@media (min-width: 1056px)
 {
-	#spanLanguage
+	#pLanguage
 	{
+		position: absolute;
+		margin-top: 15pt;
 		right: 24pt;
-		top: 20pt;
+		top: 0;
 	}
 }

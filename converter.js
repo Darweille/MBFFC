@@ -65,7 +65,6 @@ window.onload = function()
 	SpanFontOptions[2] = document.getElementById("spanFontVerticalOffset").innerHTML;
 	SpanFontOptions[3] = document.getElementById("spanFontLineSpacing").innerHTML;
 
-
 	//偵測並決定語言
 	if (navigator.language.toLowerCase() == ("zh-tw"||"zh-cn"||"zh-hk"||"zh-sg"))
 	{
@@ -77,6 +76,9 @@ window.onload = function()
 	}
 	
 	LanguageSelected();
+	
+	//顯示字型調整區
+	document.getElementById("divFontSetting").style.display = "block";
 }
 
 //選擇語言後的動作
