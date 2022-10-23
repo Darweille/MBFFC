@@ -8,7 +8,7 @@ body
 	background-color: #5C4D3E;
 	background-image: url('bg3.png');
 	color: #ffffff;
-	margin: 0;
+	margin: 0 0 0 10pt;
 }
 
 #divTopFloor
@@ -28,7 +28,7 @@ body
 
 #divMainFloor
 {
-	padding: 36pt;
+	padding: 48pt;
 	text-align: center;
 }
 
@@ -39,24 +39,24 @@ body
 	border: 9pt outset rgba(60, 40, 20, 0.5);
 	border-radius: 24pt;
 	background: radial-gradient(ellipse at center, rgba(185, 155, 125, 0.1), rgba(125, 95, 75, 0.7));
-	font-size: 125%;
+	font-size: 100%;
 }
 
 #divFontSetting
 {
 	display: none;
-	font-size: 125%;
+	font-size: 110%;
 	margin-top: 14pt;
 }
 
-#divFontSetting span
+#divFontSetting div
 {
 	padding: 18pt;
 	border-radius: 12pt;
 	display: inline-block;
 }
 
-#divFontSetting span:hover
+#divFontSetting div:hover
 {
 	background: rgba(190, 170, 160, 0.3);
 }
@@ -77,8 +77,10 @@ body
 #divMessage
 {
 	display: none;
-	padding: 0 50pt 0 50pt;
-  	border-radius: 24pt;
+	visibility: hidden;
+	
+	padding: 0 40pt 0 40pt;
+  	border-radius: 48pt;
 	background: rgba(0, 0, 0, 0.3);
 	font-size: 100%;
 	margin-top: 15pt;
@@ -95,17 +97,13 @@ body
 	background-color: rgba(40, 20, 0, 0.5);
 	box-shadow: 1pt 1pt 8pt 1pt rgba(100, 80, 60, 0.5);
 	margin-top: 15pt;
-}
-
-#divButtons
-{
-	margin-top: 15pt;
+	color: rgba(255, 255, 255, 0.8);
 }
 
 #divButtons span
 {
-	display: inline-block;
-	padding: 0 24pt 0 24pt;
+	display: block;
+	padding: 12pt 24pt 12pt 24pt;
 }
 
 #divButtons input
@@ -125,7 +123,7 @@ body
 {
 	text-align: center;
 	border-top : 5pt groove rgba(145, 125, 105, 0.5);
-	padding: 10pt 25pt 25pt 25pt;
+	padding: 10pt 25pt 10pt 25pt;
 }
 
 #divBottomInfo
@@ -150,22 +148,18 @@ body
 
 #pLanguage
 {
-	margin-top: 0pt;
+	text-align: center;
+	margin-top: 0;
 }
 
 #selectLanguage
 {
-	font-size: 150%;
+	font-size: 115%;
 	font-weight: bold;
 	background: rgba(165, 145, 120, 0.5);
-	padding: 15pt;
+	padding: 10pt;
 	border-color: black;
 	border-radius: 10pt;
-}
-
-#divHiddenFloor
-{
-	display: none;
 }
 
 /* 裝置的解析度寬度 >= 1024 */
@@ -176,14 +170,24 @@ body
 		font-size: 1.5em;
 	}
 		
+	#selectLanguage
+	{
+		padding: 5pt;
+	}
+	
 	#divMainFloor
 	{
-		padding: 20pt;
+		padding: 15pt;
 	}
-		
+	
 	#divFileSelecter
 	{
 		border: 3pt outset rgba(60, 40, 20, 0.5);
+		display: inline-block;
+		padding: 1pt 24pt 1pt 24pt;
+		border-radius: 24pt;
+		background: radial-gradient(ellipse at center, rgba(185, 155, 125, 0.1), rgba(125, 95, 75, 0.7));
+		font-size: 120%;
 	}
 	
 	#divFileSelecter:hover
@@ -203,10 +207,10 @@ body
 	
 	#divFontSetting
 	{
-		font-size: 100%;
+		font-size: 90%;
 	}
 	
-	#divFontSetting span
+	#divFontSetting div
 	{
 		padding: 10pt;
 	}
@@ -219,19 +223,19 @@ body
 	#divMessage
 	{
 		padding: 0 25pt 0 25pt;
+		border-radius: 24pt;
 	}
-
-	#textareaResult
+	
+	#divButtons span
 	{
-		font-size: 80%;
-		width: 800px;
-		height: 153px;
+		padding: 9pt 9pt 9pt 9pt;
+		display: inline-block;
 	}
 	
 	#divButtons input
 	{
-		font-size: 100%;
-		padding: 9pt 24pt 9pt 24pt;
+		font-size: 90%;
+		padding: 8pt 24pt 8pt 24pt;
 	}
 		
 	#divButtons input:hover
@@ -273,22 +277,30 @@ body
 		color: rgba(230, 205, 180, 0.8);
 		text-shadow: 1pt 1pt 3pt #000000;
 	}
-	
-	#selectLanguage
-	{
-		font-size: 100%;
-		padding: 5pt;
-	}
 }
 
 /* 視窗的寬度 >= 1056 */
 @media (min-width: 1056px)
 {
+	#textareaResult
+	{
+		font-size: 80%;
+		width: 800px;
+		height: 153px;
+	}
+	
 	#pLanguage
 	{
 		position: absolute;
-		margin-top: 15pt;
 		right: 24pt;
 		top: 0;
+		margin-top: 14pt;
 	}
+}
+
+/* 淡入效果 */
+@keyframes FadeIn
+{
+	from { opacity: 0%; }
+    to { opacity: 100%; }
 }
