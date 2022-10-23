@@ -11,7 +11,7 @@ function LanguageTC()
 	LanguageString[3] = "正在讀取檔案…";
 	LanguageString[4] = "轉換完畢。";
 	LanguageString[5] = "已重新轉換完畢。";
-	LanguageString[6] = "<p>轉換失敗！</p><p>檔案內容可能有誤。</p>";
+	LanguageString[6] = "轉換失敗！檔案內容可能有誤。";
 	LanguageString[7] = "<p>點擊此處選取檔案<p/><p/>或直接拖曳檔案至頁面上即可開始轉換</p>";
 	LanguageString[8] = "字型大小：";
 	LanguageString[9] = "垂直位移：";
@@ -34,7 +34,7 @@ function LanguageEN()
 	LanguageString[3] = "Loading file...";
 	LanguageString[4] = "Processing finished.";
 	LanguageString[5] = "Processing is done again.";
-	LanguageString[6] = "<p>Processing failed!<p></p>The contents of the file may be incorrect.";
+	LanguageString[6] = "Processing failed! The contents of the file may be incorrect.";
 	LanguageString[7] = "<p>Click here to select a file</p><p>or drag a file on page to start</p>";
 	LanguageString[8] = "Font Size: ";
 	LanguageString[9] = "Vertical Offset: ";
