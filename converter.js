@@ -1,161 +1,180 @@
 ﻿var LanguageString = [];
 var ShowingMessage = 0;
-var IntervalTimer;
-
-//變更字串為中文
-function LanguageTC()
-{
-	LanguageString[0] = "";
-	LanguageString[1] = "檔案類型不符合！";
-	LanguageString[2] = "檔案大小不能超過10MB！";
-	LanguageString[3] = "正在讀取檔案…";
-	LanguageString[4] = "轉換完畢。";
-	LanguageString[5] = "已重新轉換完畢。";
-	LanguageString[6] = "轉換失敗！檔案內容可能有誤。";
-	LanguageString[7] = "<p>點擊此處選取檔案<p/><p/>或直接拖曳檔案至頁面上即可開始轉換</p>";
-	LanguageString[8] = "字型大小：";
-	LanguageString[9] = "垂直位移：";
-	LanguageString[10] = "間距：";
-	LanguageString[11] = "行距：";
-	LanguageString[12] = "重新轉換";
-	LanguageString[13] = "全選並複製";
-	LanguageString[14] = "儲存檔案";
-	LanguageString[15] = "轉換內容已複製至剪貼簿。";
-	LanguageString[16] = "已自動生成 font_data.xml 檔案並下載。";
-	LanguageString[17] = "正在轉換…";
-}
-
-//變更字串為英文
-function LanguageEN()
-{
-	LanguageString[0] = "";
-	LanguageString[1] = "The file extension don't match.";
-	LanguageString[2] = "The file size requires less than 10 MB.";
-	LanguageString[3] = "Loading file...";
-	LanguageString[4] = "Processing finished.";
-	LanguageString[5] = "Processing is done again.";
-	LanguageString[6] = "Processing failed! The contents of the file may be incorrect.";
-	LanguageString[7] = "<p>Click here to select a file</p><p>or drag a file on page to start</p>";
-	LanguageString[8] = "Font Size: ";
-	LanguageString[9] = "Vertical Offset: ";
-	LanguageString[10] = "Spacing: ";
-	LanguageString[11] = "Line Spacing: ";
-	LanguageString[12] = "Restart";
-	LanguageString[13] = "Copy All";
-	LanguageString[14] = "Save File";
-	LanguageString[15] = "The contents already copied to clipboard.";
-	LanguageString[16] = "The file 'font_data.xml' has started download to your device.";
-	LanguageString[17] = "Processing...";
-}
+var FNTsize = null;
 
 //頁面讀取完成時
 window.onload = function()
 {
-	selectLanguage = document.getElementById("selectLanguage");
+	//定義並抓取網頁內數值
+	inputFontSize = document.getElementById("inputFontSize");
+	inputFontCharacterSpacing = document.getElementById("inputFontCharacterSpacing");
+	inputFontVerticalOffset = document.getElementById("inputFontVerticalOffset");
+	inputFontLineSpacing = document.getElementById("inputFontLineSpacing");
+	divMessage = document.getElementById("divMessage");
+	pMessage = document.getElementById("pMessage");
 	divResult = document.getElementById("divResult");
 	textareaResult = document.getElementById("textareaResult");
-	inputFontSize = document.getElementById("inputFontSize");
-	inputFontVerticalOffset = document.getElementById("inputFontVerticalOffset");
-	inputFontSpacing = document.getElementById("inputFontSpacing");
-	inputFontLineSpacing = document.getElementById("inputFontLineSpacing");
+	selectLanguage = document.getElementById("selectLanguage");
 
-	//自動偵測並選取語言
-	if (navigator.language.toLowerCase() == ("zh-tw"||"zh-cn"||"zh-hk"||"zh-sg"))
+	//若Cookie內有語言紀錄
+	if (GetCookie("language") != null)
 	{
-		selectLanguage.value = "tc";
+		//自動選取Cookie指定的語言
+		selectLanguage.value = GetCookie("language");
 	}
 	else
 	{
-		selectLanguage.value = "en";
+		//自動偵測並選取語言
+		if (navigator.language.toLowerCase() == ("zh-tw"||"zh-cn"||"zh-hk"||"zh-sg"))
+		{
+			selectLanguage.value = "tc";
+		}
+		else
+		{
+			selectLanguage.value = "en";
+		}
 	}
 	
-	LanguageSelected();
+	LanguageChanged(selectLanguage.value);
 	
-	//顯示字型調整區
+	//讓開啟JavaScript者顯示出語言選擇器及字型調整區
+	document.getElementById("pLanguage").style.display = "block";
 	document.getElementById("divFontSetting").style.display = "block";
-	
-	FirstConvert = false;
+}
+
+//讀取Cookie
+function GetCookie(CookieName)
+{
+	AllCookieArray = document.cookie.split(";"); //取得全部Cookie並解析為陣列
+		
+	//搜尋全部的Cookie
+	for (count=0; count<AllCookieArray.length; count++)
+	{
+		var AllCookieName = AllCookieArray[count].split("=");
+		if (AllCookieName[0] == CookieName)
+		{
+			return AllCookieName[1];
+		}
+	}
+}
+
+//設定語言
+function LanguageSet(LanguageID)
+{
+	if (LanguageID == "tc")
+	{
+		LanguageString[0] = "";
+		LanguageString[1] = "檔案類型不符合！";
+		LanguageString[2] = "檔案大小不能超過10MB！";
+		LanguageString[3] = "正在讀取檔案…";
+		LanguageString[4] = "轉換完畢。";
+		LanguageString[5] = "已重新轉換完畢。";
+		LanguageString[6] = "轉換失敗！檔案內容可能有誤。";
+		LanguageString[7] = "點擊此處選取檔案<br /><br />或直接拖曳檔案至頁面上即可開始轉換";
+		LanguageString[8] = "字型大小：";
+		LanguageString[9] = "字距：";
+		LanguageString[10] = "垂直位移：";
+		LanguageString[11] = "行距：";
+		LanguageString[12] = "重新轉換";
+		LanguageString[13] = "全選並複製";
+		LanguageString[14] = "儲存檔案";
+		LanguageString[15] = "轉換內容已複製至剪貼簿。";
+		LanguageString[16] = "已自動生成 font_data.xml 檔案並下載。";
+		LanguageString[17] = "正在轉換…";
+		LanguageString[18] = "預設值";
+	}
+	else
+	{
+		LanguageString[0] = "";
+		LanguageString[1] = "The file extension don't match.";
+		LanguageString[2] = "The file size requires less than 10 MB.";
+		LanguageString[3] = "Loading file...";
+		LanguageString[4] = "Processing finished.";
+		LanguageString[5] = "Processing is done again.";
+		LanguageString[6] = "Processing failed! The contents of the file may be incorrect.";
+		LanguageString[7] = "Click here to select a file<br /><br />or drag a file on page to start";
+		LanguageString[8] = "Font Size: ";
+		LanguageString[9] = "Spacing: ";
+		LanguageString[10] = "Vertical Offset: ";
+		LanguageString[11] = "Line Spacing: ";
+		LanguageString[12] = "Restart";
+		LanguageString[13] = "Copy All";
+		LanguageString[14] = "Save File";
+		LanguageString[15] = "The contents already copied to clipboard.";
+		LanguageString[16] = "The file 'font_data.xml' has started download to your device.";
+		LanguageString[17] = "Processing...";
+		LanguageString[18] = "Default";
+	}
 }
 
 //選擇語言後
-function LanguageSelected()
+function LanguageChanged(LanguageID)
 {
-	//讀取選擇的語言
-	if (selectLanguage.value == "tc")
-	{
-		LanguageTC();
-	}
-	else
-	{
-		LanguageEN();
-	}
-	
-	//設定檔案選取區的文字
+	LanguageSet(LanguageID);
+		
+	//套入檔案選取區的文字
 	document.getElementById("pFileSelecter").innerHTML = LanguageString[7];
 	
-	//設定字型調整的文字
+	//套入字型調整區的文字
 	document.getElementById("spanFontSize").innerHTML = LanguageString[8];
-	document.getElementById("spanFontVerticalOffset").innerHTML = LanguageString[9];
-	document.getElementById("spanFontSpacing").innerHTML = LanguageString[10];
+	document.getElementById("spanFontCharacterSpacing").innerHTML = LanguageString[9];
+	document.getElementById("spanFontVerticalOffset").innerHTML = LanguageString[10];
 	document.getElementById("spanFontLineSpacing").innerHTML = LanguageString[11];
 	
-	//設定按鈕文字
+	//套入字型調整區的欄位背景值
+	if (FNTsize == null)
+	{
+		inputFontSize.placeholder = "(" + LanguageString[18] + ")";
+	}
+	
+	//套入按鈕的文字
 	document.getElementById("inputRestartButton").value = LanguageString[12];
 	document.getElementById("inputCopyButton").value = LanguageString[13];
 	document.getElementById("inputSaveButton").value = LanguageString[14];
 	
-	//轉換正在顯示的訊息
-	ShowMessage(ShowingMessage);
+	//套入顯示的訊息
+	pMessage.innerHTML = LanguageString[ShowingMessage];
+	
+	//將選擇的語言寫入Cookie
+	document.cookie = "language="+LanguageID+"; max-age=2592000; path=/; SameSite=Lax";
 }
 
 //顯示訊息
 function ShowMessage(MessageNumber)
 {
-	var divMessage = document.getElementById("divMessage");
-	
-	//重置
+	//先重置，將訊息區隱藏並取消特效動畫
 	divMessage.style.display = "none";
-	divMessage.style.visibility = "hidden";
 	divMessage.style.animationName = "";
 	
 	//當字串內容不為空白時
 	if (LanguageString[MessageNumber] != "")
 	{
-		clearInterval(IntervalTimer); //重置計時器
-		IntervalTimer = setInterval(IntervalTimer2, 30); //使用計時器
-		IntervalTimerNumber = 0;
+		pMessage.innerHTML = LanguageString[MessageNumber];
 		
-		function IntervalTimer2()
+		//延遲執行的內容
+		function DelayRun()
 		{
-			if (IntervalTimerNumber < 4)
-			{
-				IntervalTimerNumber += 1;
-			}
-			else
-			{
-				divMessage.style.display = "inline-flex";
-				divMessage.style.visibility = "visible";
-				
-				//使用淡入特效
-				divMessage.style.animationName = "FadeIn";
-				divMessage.style.animationDuration = "1.2s";
-				divMessage.style.animationDelay = "0s";
-				divMessage.style.animationIterationCount = "1";
-
-				clearInterval(IntervalTimer); //清除計時器
-			}
+			//顯示出訊息區
+			divMessage.style.display = "inline-flex";
+			
+			//使用淡入特效動畫
+			divMessage.style.animationDuration = "1.3s";
+			divMessage.style.animationDelay = "0s";
+			divMessage.style.animationIterationCount = "1";
+			divMessage.style.animationName = "FadeIn";
 		}
 		
-		document.getElementById("pMessage").innerHTML = LanguageString[MessageNumber];
+		setTimeout(DelayRun, 100);
 	}
 	
+	clearTimeout(DelayRun); //嘗試清除計時器以防意外
 	ShowingMessage = MessageNumber;
 }
 
 //進行拖曳時
 function DrapOver(DragOverFile)
 {
-	DragOverFile.preventDefault(); //停止拖曳後所執行的事件
+	DragOverFile.preventDefault(); //中止後續事件以防頁面跳轉
 }
 
 //拖曳檔案後
@@ -214,6 +233,15 @@ function ClearFile()
 	document.getElementById("inputFileSelecter").value = null;
 }
 
+//檢查並校正指定值
+function FontSettingCheck()
+{
+	if (inputFontSize.value != "" && inputFontSize.value < 1)
+	{
+		inputFontSize.value = "";
+	}
+}
+
 //轉換程式
 function Convert()
 {
@@ -231,23 +259,35 @@ function Convert()
 		var FNTinfo = parserResult.getElementsByTagName("info")[0];
 		var FNTcommon = parserResult.getElementsByTagName("common")[0];
 		
-		var setFontSize = FNTinfo.attributes["size"].value;
+		FNTsize = FNTinfo.attributes["size"].value;
+		var FNTspacing = FNTinfo.attributes["spacing"].value.split(",")[0];
+		
+		//設定字型初始值
+		var setFontSize = FNTsize;
 		var setFontVerticalOffset = 0;
-		var setFontSpacing = 0;
+		var setFontCharacterSpacing = FNTspacing;
 		var setFontLineSpacing = 100;
 		
+		//套入欄位背景值
+		inputFontSize.placeholder = FNTsize + " px";
+		inputFontCharacterSpacing.placeholder = FNTspacing;
+		
+		//若有指定值則套入
 		if (inputFontSize.value != "")
 		{
 			setFontSize = Number(inputFontSize.value);
 		}
+		
+		if (inputFontCharacterSpacing.value != "")
+		{
+			setFontCharacterSpacing = Number(inputFontCharacterSpacing.value);
+		}
+		
 		if (inputFontVerticalOffset.value != "")
 		{
 			setFontVerticalOffset = Number(inputFontVerticalOffset.value);
 		}
-		if (inputFontSpacing.value != "")
-		{
-			setFontSpacing = Number(inputFontSpacing.value);
-		}
+		
 		if (inputFontLineSpacing.value != "")
 		{
 			setFontLineSpacing = Number(inputFontLineSpacing.value);
@@ -267,12 +307,12 @@ function Convert()
 				
 				var yoffset = (+FNTchar[obj].attributes["yoffset"].value);
 				var base = Number(FNTcommon.attributes["base"].value);
-				var spacing = Number(FNTinfo.attributes["spacing"].value.split(",")[0] * 2);
-				var yadjust = (-yoffset)+(base-spacing);
+				var spacing = Number(FNTspacing * 2);
 				
+				var yadjust = (-yoffset)+(base-spacing);
 				var postshift = (+FNTchar[obj].attributes["xadvance"].value);			
 				
-				XMLcharacter += '<character code='+code+' u='+u+' v='+v+' w='+w+' h='+h+' preshift='+preshift+' yadjust='+(yadjust + Number(setFontVerticalOffset))+' postshift='+(postshift + Number(setFontSpacing))+' />\n';
+				XMLcharacter += '<character code='+code+' u='+u+' v='+v+' w='+w+' h='+h+' preshift='+preshift+' yadjust='+(yadjust + Number(setFontVerticalOffset))+' postshift='+(postshift + Number(setFontCharacterSpacing))+' />\n';
 			}
 		}
 		
@@ -303,17 +343,6 @@ function Convert()
 	{
 		ShowMessage(6);
 	}
-	
-	ClearFile();
-}
-
-//檢查並校正指定值
-function FontSettingCheck()
-{
-	if (inputFontSize.value != "" && inputFontSize.value < 1)
-	{
-		inputFontSize.value = "";
-	}
 }
 
 //複製內容
@@ -332,7 +361,7 @@ function SaveFile(FileName)
 	//若為IE
 	if (navigator.msSaveBlob)
 	{
-		window.navigator.msSaveOrOpenBlob(ResultText, "font_data.xml");
+		navigator.msSaveOrOpenBlob(ResultText, "font_data.xml");
 	}
 	else
 	{
