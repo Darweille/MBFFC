@@ -25,20 +25,26 @@ window.onload = function()
 	else
 	{
 		//自動偵測並選取語言
-		if (navigator.language.toLowerCase() == ("zh-tw"||"zh-cn"||"zh-hk"||"zh-sg"))
+		switch (navigator.language.toLowerCase())
 		{
-			selectLanguage.value = "tc";
-		}
-		else
-		{
-			selectLanguage.value = "en";
+			case "zh-cn":
+			case "zh-hk":
+			case "zh-mo":
+			case "zh-sg":
+			case "zh-tw":
+			case "zh-chs":
+			case "zh-cht":
+				selectLanguage.value = "zh-cht";
+				break;
+			default:
+				selectLanguage.value = "en-us";
 		}
 	}
 	
 	LanguageChanged(selectLanguage.value);
 	
 	//讓開啟JavaScript者顯示出語言選擇器及字型調整區
-	document.getElementById("pLanguage").style.display = "block";
+	document.getElementById("pLanguage").style.visibility = "visible";
 	document.getElementById("divFontSetting").style.display = "block";
 }
 
@@ -61,7 +67,7 @@ function GetCookie(CookieName)
 //設定語言
 function LanguageSet(LanguageID)
 {
-	if (LanguageID == "tc")
+	if (LanguageID == "zh-cht")
 	{
 		LanguageString[0] = "";
 		LanguageString[1] = "檔案類型不符合！";
@@ -174,7 +180,7 @@ function ShowMessage(MessageNumber)
 //進行拖曳時
 function DrapOver(DragOverFile)
 {
-	DragOverFile.preventDefault(); //中止後續事件以防頁面跳轉
+	DragOverFile.preventDefault(); //取消事件以防頁面跳轉
 }
 
 //拖曳檔案後
@@ -194,12 +200,12 @@ function SelectFile()
 
 //檢查檔案類型及大小
 function CheckFile()
-{
-	ShowMessage(0);
-	divResult.style.display = "none";
-	
+{	
 	if (UploadedFile != null)
 	{
+		ShowMessage(0);
+		divResult.style.display = "none";
+		
 		if (UploadedFile.name.substr(UploadedFile.name.lastIndexOf(".")) != ".fnt") //假如副檔名不是FNT
 		{
 			ClearFile();
@@ -261,7 +267,7 @@ function Convert()
 		
 		FNTsize = FNTinfo.attributes["size"].value;
 		var FNTspacing = FNTinfo.attributes["spacing"].value.split(",")[0];
-		
+				
 		//設定字型初始值
 		var setFontSize = FNTsize;
 		var setFontVerticalOffset = 0;
@@ -342,6 +348,11 @@ function Convert()
 	catch (e)
 	{
 		ShowMessage(6);
+		
+		inputFontSize.placeholder = "(" + LanguageString[18] + ")";
+		inputFontCharacterSpacing.placeholder = "0";
+		
+		console.log(e);
 	}
 }
 

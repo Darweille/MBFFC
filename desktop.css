@@ -9,6 +9,8 @@ body
 	background-image: url('bg1.png');
 	color: #ffffff;
 	margin: 0;
+	margin-bottom: auto;
+	text-align: center;
 }
 
 #divTopFloor
@@ -21,9 +23,10 @@ body
 #spanTitle
 {
 	font-size: 1.75em;
+	font-family: "CaslonOpnface BT";
 	font-weight: bold;
-	color: rgba(25, 20, 15, 0.9);
-	text-shadow: -1pt -2pt 5pt rgba(120, 115, 110, 0.8);
+	color: rgba(20, 15, 10, 0.9);
+	text-shadow: -1pt -1pt 6pt rgba(170, 160, 150, 0.5);
 }
 
 #divMainFloor
@@ -58,12 +61,12 @@ body
 {
 	display: inline-block;
 	padding: 24pt;
+	border-radius: 12pt;
 }
 
-#divFontSetting label
+#divFontSetting div:hover
 {
-	padding: inherit;
-	border-radius: 12pt;
+	background: rgba(190, 170, 160, 0.3);
 }
 
 #divFontSetting input
@@ -82,7 +85,7 @@ body
 #divMessage
 {
 	display: none;
-	font-size: 1em;
+	font-size: 1.1em;
 	padding: 0 40pt 0 40pt;
   	border-radius: 48pt;
 	background: rgba(0, 0, 0, 0.3);
@@ -128,17 +131,23 @@ body
 
 #divBottomFloor
 {
-	text-align: center;
 	border-top : 6pt groove rgba(145, 125, 105, 0.5);
-	padding: 10pt 25pt 10pt 25pt;
+	padding: 0 24pt 12pt 24pt;
+	text-align: center;
+	font-weight: bold;
+	font-size: 0.6em;
+	color: rgba(180, 155, 125, 0.8);
+	text-shadow: 2pt 2pt 4pt rgba(50, 40, 30, 0.8);
+}
+
+#divBottomFloor a
+{
+	color: rgba(180, 155, 125, 0.8);
+	text-decoration: none;
 }
 
 #divBottomInfo
 {
-	font-weight: bold;
-	font-size: 0.8em;
-	color: rgba(180, 155, 125, 0.8);
-	text-shadow: 2pt 2pt 4pt rgba(50, 40, 30, 0.8);
 	display: inline-block;
 }
 
@@ -147,26 +156,19 @@ body
 	text-align: left;
 }
 
-#divBottomInfo a
-{
-	color: rgba(180, 155, 125, 0.8);
-	text-decoration: none;
-}
-
 #pLanguage
 {
-	text-align: center;
-	margin-top: 0;
-	display: none;
+	visibility: hidden;
+	margin: 10pt 0 10pt 0;
 }
 
 #selectLanguage
 {
-	font-size: 1.15em;
+	font-size: 2em;
 	font-weight: bold;
 	background: rgba(165, 145, 120, 0.5);
-	padding: 10pt;
-	border-color: black;
+	border-width: 5pt;
+	border-color: transparent;
 	border-radius: 10pt;
 }
 
@@ -181,11 +183,6 @@ body
 	#spanTitle
 	{
 		font-size: 1.25em;
-	}
-
-	#selectLanguage
-	{
-		padding: 5pt;
 	}
 	
 	#divMainFloor
@@ -228,12 +225,7 @@ body
 	{
 		padding: 12pt;
 	}
-	
-	#divFontSetting label:hover
-	{
-		background: rgba(190, 170, 160, 0.3);
-	}
-	
+		
 	#divFontSetting input
 	{
 		width: 80pt;
@@ -283,23 +275,18 @@ body
 	
 	#divBottomFloor
 	{
-		padding: 0 24pt 1pt 24pt;
 		border-top-width: 3pt;
-	}
-	
-	#divBottomInfo
-	{
 		font-size: 0.7em;
 		color: rgba(180, 155, 125, 0.6);
 		text-shadow: -1pt -1pt 1pt rgba(50, 40, 30, 0.7);
 	}
-	
-	#divBottomInfo a
+		
+	#divBottomFloor a
 	{
 		color: rgba(180, 155, 125, 0.6);
 	}
 	
-	#divBottomInfo a:hover
+	#divBottomFloor a:hover
 	{
 		color: rgba(230, 205, 180, 0.8);
 		text-shadow: 1pt 1pt 3pt #000000;
@@ -307,7 +294,7 @@ body
 	
 	#pLanguage
 	{
-		font-size: 0.75em;
+		font-size: 0.6em;
 	}
 }
 
@@ -316,16 +303,15 @@ body
 {
 	#spanTitle
 	{
-		font-size: 150%;
+		font-size: 1.5em;
 	}
 	
 	#pLanguage
 	{
 		position: absolute;
-		right: 24pt;
-		top: 0;
-		margin-top: 15pt;
-		font-size: 0.8em;
+		right: 21pt;
+		top: 7pt;
+		font-size: 0.7em;
 	}
 }
 
