@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html ondrop="DropFile(event)" ondragover="DrapOver(event)">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="zh-tw" http-equiv="Content-Language">
+<title>Mount&amp;Blade FNT to XML Format Converter</title>
+<link rel="stylesheet" type="text/css" href="desktop.css?202210271855">
+<script type="text/javascript" src="converter.js?202210271855"></script>
+</head>
+<body>
+<!-- 頂部 -->
+<div id="divTopFloor">
+	<span id="spanTitle">Mount&amp;Blade FNT to XML Format Converter</span>
+</div>
+
+<!-- 主內容 -->
+<div id="divMainFloor">
+
+	<!-- 檔案選擇區 -->
+	<div id="divFileSelecter" onclick="inputFileSelecter.click()">
+		<input id="inputFileSelecter" name="FileSelecter" type="file" accept=".fnt" oninput="SelectFile()">
+		<p id="pFileSelecter">瀏覽器必須允許使用 JavaScript 指令碼<br /><br />The browser must enable JavaScript.</p>
+	</div>
+	
+	<!-- 字型調整設定區 -->
+	<div id="divFontSetting">
+		<div><label for="inputFontSize"><span id="spanFontSize"></span></label><input id="inputFontSize" name="FontSize" type="number" oninput="FontSettingCheck()"></div>
+		<div><label for="inputFontCharacterSpacing"><span id="spanFontCharacterSpacing"></span></label><input id="inputFontCharacterSpacing" name="FontCharacterSpacing" type="number" placeholder="0"></div>
+		<div><label for="inputFontVerticalOffset"><span id="spanFontVerticalOffset"></span></label><input id="inputFontVerticalOffset" name="FontVerticalOffset" type="number" placeholder="0"></div>
+		<div><label for="inputFontLineSpacing"><span id="spanFontLineSpacing"></span></label><input id="inputFontLineSpacing" name="FontLineSpacing" type="number" placeholder="100%"></div>
+	</div>
+	
+	<!-- 訊息區 -->
+	<div id="divMessage">
+		<p id="pMessage"></p>
+	</div>
+	
+	<!-- 轉換結果區 -->
+	<div id="divResult">		
+		<textarea id="textareaResult" name="Result" rows="7" readonly></textarea>
+		
+		<div id="divButtons">
+			<span><input id="inputRestartButton" name="RestartButton" type="button" onclick="Convert()" value="Restart"></span>
+			<span><input id="inputCopyButton" name="CopyButton" type="button" onclick="CopyResult()" value="Copy All"></span>
+			<span><input id="inputSaveButton" name="SaveButton" type="button" onclick="SaveFile('font_data.xml')" value="Save File"></span>
+		</div>
+	</div>
+	
+</div>
+
+<!-- 底部 -->
+<div id="divBottomFloor">
+
+	<!-- 資訊區 -->
+	<div id="divBottomInfo">
+		<ul>References:
+			<li><a href="https://bitbucket.org/Swyter/" target="_blank">Swyter's Mount and Blade Bitmap Font Converter From Angelcode's BMFont format</a>.</li>
+			<li><a href="https://mbmwarbandmodding.proboards.com/thread/4/create-fonts-mount-blade-swyter" target="_blank">Create your own fonts in Mount&amp;Blade - By Swyter</a>.</li>
+		</ul>
+		
+		<p>Version: 1.0.8 - Last update on 2022/10/27 by <a href="https://github.com/Darweille" target="_blank">Darweille</a>.</p>
+		
+		<!-- 語言選擇 -->
+		<p id="pLanguage">
+			<select id="selectLanguage" name="LanguageSelecter" onchange="LanguageChanged(value)">
+				<option value="en-us" selected="">English</option>
+				<option value="zh-cht">中文</option>
+			</select>
+		</p>
+	</div>
+	
+</div>
+</body>
+</html>

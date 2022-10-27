@@ -1,0 +1,323 @@
+﻿html
+{
+	font-size: 2.5em;
+}
+
+body
+{
+	background-color: #5C4D3E;
+	background-image: url('bg1.png');
+	color: #ffffff;
+	margin: 0;
+	margin-bottom: auto;
+	text-align: center;
+}
+
+#divTopFloor
+{
+	background-image: url('bg2.png');
+	padding: 15pt;
+	text-align: center;
+}
+
+#spanTitle
+{
+	font-size: 1.75em;
+	font-family: "CaslonOpnface BT";
+	font-weight: bold;
+	color: rgba(20, 15, 10, 0.9);
+	text-shadow: -1pt -1pt 6pt rgba(170, 160, 150, 0.5);
+}
+
+#divMainFloor
+{
+	padding: 48pt;
+	text-align: center;
+}
+
+#divFileSelecter
+{
+	display: block;
+	font-size: 1.2em;
+	padding: 1pt 32pt 1pt 32pt;
+	border: 9pt outset rgba(60, 40, 20, 0.5);
+	border-radius: 24pt;
+	background: radial-gradient(ellipse at center, rgba(185, 155, 125, 0.1), rgba(125, 95, 75, 0.7));
+}
+
+#inputFileSelecter
+{
+	display: none;
+}
+
+#divFontSetting
+{
+	display: none;
+	font-size: 1em;
+	margin-top: 15pt;
+}
+
+#divFontSetting div
+{
+	display: inline-block;
+	padding: 24pt;
+	border-radius: 12pt;
+}
+
+#divFontSetting div:hover
+{
+	background: rgba(190, 170, 160, 0.3);
+}
+
+#divFontSetting input
+{
+	font-size: 1em;
+	color: #ffffff;
+	text-shadow: 1pt 1pt 2pt #000000;
+	background-color: transparent;
+	border-color: transparent transparent transparent transparent;
+	border-bottom : 3pt groove rgba(250, 250, 250, 0.5);
+	outline: none;
+	text-align: center;
+	width: 150pt;
+}
+
+#divMessage
+{
+	display: none;
+	font-size: 1.1em;
+	padding: 0 40pt 0 40pt;
+  	border-radius: 48pt;
+	background: rgba(0, 0, 0, 0.3);
+	margin-top: 15pt;
+}
+
+#divResult
+{
+	display: none;
+}
+
+#textareaResult
+{
+	width: 90%;
+	font-size: 0.7em;
+	border: 0;
+	border-radius: 6pt;
+	padding: 8pt;
+	background-color: rgba(40, 20, 0, 0.5);
+	box-shadow: 1pt 1pt 8pt 1pt rgba(100, 80, 60, 0.5);
+	margin-top: 15pt;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+#divButtons span
+{
+	display: block;
+	padding: 12pt 24pt 12pt 24pt;
+}
+
+#divButtons input
+{
+	outline: none;
+	font-weight: bold;
+	font-size: 1.25em;
+	border-radius: 12pt;
+	background: linear-gradient(to left top, rgba(210, 195, 185, 0.3), rgba(255, 255, 255, 0.3));
+	box-shadow: 2pt 2pt 2pt 2pt rgba(45, 35, 20, 0.5);
+	text-shadow: 1pt 1pt 1pt rgba(180, 160, 140, 0.8);
+	padding: 10pt 30pt 10pt 30pt;
+	border: 1pt soild rgba(0, 0, 0, 0.5);
+}
+
+#divBottomFloor
+{
+	border-top : 6pt groove rgba(145, 125, 105, 0.5);
+	padding: 0 24pt 12pt 24pt;
+	text-align: center;
+	font-weight: bold;
+	font-size: 0.6em;
+	color: rgba(180, 155, 125, 0.8);
+	text-shadow: 2pt 2pt 4pt rgba(50, 40, 30, 0.8);
+}
+
+#divBottomFloor a
+{
+	color: rgba(180, 155, 125, 0.8);
+	text-decoration: none;
+}
+
+#divBottomInfo
+{
+	display: inline-block;
+}
+
+#divBottomInfo ul
+{
+	text-align: left;
+}
+
+#pLanguage
+{
+	visibility: hidden;
+	margin: 10pt 0 10pt 0;
+}
+
+#selectLanguage
+{
+	font-size: 2em;
+	font-weight: bold;
+	background: rgba(165, 145, 120, 0.5);
+	border-width: 5pt;
+	border-color: transparent;
+	border-radius: 10pt;
+}
+
+/* 裝置的解析度寬度 >= 1024 */
+@media (min-device-width: 1024px)
+{
+	html
+	{
+		font-size: 1.5em;
+	}
+
+	#spanTitle
+	{
+		font-size: 1.25em;
+	}
+	
+	#divMainFloor
+	{
+		padding: 15pt;
+	}
+	
+	#divFileSelecter
+	{
+		border: 3pt outset rgba(60, 40, 20, 0.5);
+		display: inline-block;
+		padding: 1pt 24pt 1pt 24pt;
+		border-radius: 24pt;
+		background: radial-gradient(ellipse at center, rgba(185, 155, 125, 0.1), rgba(125, 95, 75, 0.7));
+		font-size: 1em;
+		text-shadow: 1pt 1pt 3pt rgba(40, 40, 40, 0.9);
+	}
+	
+	#divFileSelecter:hover
+	{
+		cursor: pointer;
+		background: radial-gradient(ellipse at center, rgba(195, 170, 140, 0.5), rgba(140, 110, 90, 0.7));
+	}
+	
+	#divFileSelecter:active
+	{
+		border: 3pt inset rgba(60, 40, 20, 0.5);
+		background: radial-gradient(ellipse at center, rgba(195, 170, 140, 0.5), rgba(140, 110, 90, 0.7));
+		position: relative;
+		top: 1pt;
+		left: 1pt;
+	}
+	
+	#divFontSetting
+	{
+		font-size: 0.8em;
+	}
+	
+	#divFontSetting div
+	{
+		padding: 12pt;
+	}
+		
+	#divFontSetting input
+	{
+		width: 80pt;
+		border-bottom-width: 2pt;
+	}
+
+	#divMessage
+	{
+		padding: 0 25pt 0 25pt;
+		border-radius: 24pt;
+	}
+	
+	#textareaResult
+	{
+		font-size: 0.8em;
+		max-width: 768px;
+	}
+		
+	#divButtons span
+	{
+		padding: 9pt 9pt 9pt 9pt;
+		display: inline-block;
+	}
+	
+	#divButtons input
+	{
+		font-size: 0.9em;
+		padding: 8pt 24pt 8pt 24pt;
+	}
+		
+	#divButtons input:hover
+	{
+		text-shadow: 0pt 0pt 6pt #ffffff;
+		background: linear-gradient(to left top, rgba(255, 255, 255, 0.5), rgba(245, 235, 230, 0.5));
+		cursor: pointer;
+	}
+	
+	#divButtons input:active
+	{
+		text-decoration: none;
+		position: relative;
+		top: 1pt;
+		left: 1pt;
+		text-shadow: 0pt 0pt 6pt #A5A5A5;
+		box-shadow: 1pt 1pt 8pt 1pt rgba(0, 0, 0, 0.5);
+	}
+	
+	#divBottomFloor
+	{
+		border-top-width: 3pt;
+		font-size: 0.7em;
+		color: rgba(180, 155, 125, 0.6);
+		text-shadow: -1pt -1pt 1pt rgba(50, 40, 30, 0.7);
+	}
+		
+	#divBottomFloor a
+	{
+		color: rgba(180, 155, 125, 0.6);
+	}
+	
+	#divBottomFloor a:hover
+	{
+		color: rgba(230, 205, 180, 0.8);
+		text-shadow: 1pt 1pt 3pt #000000;
+	}
+	
+	#pLanguage
+	{
+		font-size: 0.6em;
+	}
+}
+
+/* 視窗的寬度 >= 1280 */
+@media (min-width: 1280px)
+{
+	#spanTitle
+	{
+		font-size: 1.5em;
+	}
+	
+	#pLanguage
+	{
+		position: absolute;
+		right: 21pt;
+		top: 7pt;
+		font-size: 0.7em;
+	}
+}
+
+/* 淡入效果 */
+@keyframes FadeIn
+{
+	from { opacity: 0%; }
+	to { opacity: 100%; }
+}
