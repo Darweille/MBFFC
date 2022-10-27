@@ -15,30 +15,23 @@ window.onload = function()
 	divResult = document.getElementById("divResult");
 	textareaResult = document.getElementById("textareaResult");
 	selectLanguage = document.getElementById("selectLanguage");
-
+	
 	//若Cookie內有語言紀錄
 	if (GetCookie("language") != null)
 	{
-		//自動選取Cookie指定的語言
-		selectLanguage.value = GetCookie("language");
+		if (GetCookie("language") == "")
+		{
+			DetectLanguage();
+		}
+		else
+		{
+			//自動選取Cookie指定的語言
+			selectLanguage.value = GetCookie("language");
+		}
 	}
 	else
 	{
-		//自動偵測並選取語言
-		switch (navigator.language.toLowerCase())
-		{
-			case "zh-cn":
-			case "zh-hk":
-			case "zh-mo":
-			case "zh-sg":
-			case "zh-tw":
-			case "zh-chs":
-			case "zh-cht":
-				selectLanguage.value = "zh-cht";
-				break;
-			default:
-				selectLanguage.value = "en-us";
-		}
+		DetectLanguage();
 	}
 	
 	LanguageChanged(selectLanguage.value);
@@ -46,6 +39,25 @@ window.onload = function()
 	//讓開啟JavaScript者顯示出語言選擇器及字型調整區
 	document.getElementById("pLanguage").style.visibility = "visible";
 	document.getElementById("divFontSetting").style.display = "block";
+}
+
+function DetectLanguage()
+{
+	//自動偵測並選取語言
+	switch (navigator.language.toLowerCase())
+	{
+		case "zh-cn":
+		case "zh-hk":
+		case "zh-mo":
+		case "zh-sg":
+		case "zh-tw":
+		case "zh-chs":
+		case "zh-cht":
+			selectLanguage.value = "zh-cht";
+			break;
+		default:
+			selectLanguage.value = "en-us";
+	}
 }
 
 //讀取Cookie
