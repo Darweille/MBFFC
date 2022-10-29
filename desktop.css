@@ -95,6 +95,7 @@ body
 #divResult
 {
 	display: none;
+	margin-top: 15pt;
 }
 
 #textareaResult
@@ -106,7 +107,6 @@ body
 	padding: 8pt;
 	background-color: rgba(40, 20, 0, 0.5);
 	box-shadow: 1pt 1pt 8pt 1pt rgba(100, 80, 60, 0.5);
-	margin-top: 15pt;
 	color: rgba(255, 255, 255, 0.8);
 }
 
@@ -116,17 +116,24 @@ body
 	padding: 12pt 24pt 12pt 24pt;
 }
 
+#divButtons
+{
+	margin-top: 5pt;
+}
+
 #divButtons input
 {
 	outline: none;
+	padding: 10pt 30pt 10pt 30pt;
 	font-weight: bold;
 	font-size: 1.25em;
-	border-radius: 12pt;
+	text-shadow: 1pt 1pt 1pt rgba(180, 160, 140, 0.8);
 	background: linear-gradient(to left top, rgba(210, 195, 185, 0.3), rgba(255, 255, 255, 0.3));
 	box-shadow: 2pt 2pt 2pt 2pt rgba(45, 35, 20, 0.5);
-	text-shadow: 1pt 1pt 1pt rgba(180, 160, 140, 0.8);
-	padding: 10pt 30pt 10pt 30pt;
-	border: 1pt soild rgba(0, 0, 0, 0.5);
+	border-radius: 12pt;
+	border-width: 2pt;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.8);
 }
 
 #divBottomFloor
@@ -164,12 +171,14 @@ body
 
 #selectLanguage
 {
+	padding: 5pt;
 	font-size: 2em;
 	font-weight: bold;
 	background: rgba(165, 145, 120, 0.5);
-	border-width: 5pt;
-	border-color: transparent;
 	border-radius: 10pt;
+	border-width: 1pt;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.8);
 }
 
 /* 裝置的解析度寬度 >= 1024 */
@@ -292,9 +301,25 @@ body
 		text-shadow: 1pt 1pt 3pt #000000;
 	}
 	
+	#selectLanguage
+	{
+		font-size: 1.2em;
+	}
+}
+
+/* 視窗的寬度 >= 1024 */
+@media (min-width: 1024px)
+{
 	#pLanguage
 	{
-		font-size: 0.6em;
+		position: absolute;
+		right: 24pt;
+		top: 6pt;
+	}
+	
+	#selectLanguage
+	{
+		font-size: 1.2em;
 	}
 }
 
@@ -306,12 +331,9 @@ body
 		font-size: 1.5em;
 	}
 	
-	#pLanguage
+	#selectLanguage
 	{
-		position: absolute;
-		right: 21pt;
-		top: 7pt;
-		font-size: 0.7em;
+		font-size: 1.5em;
 	}
 }
 
