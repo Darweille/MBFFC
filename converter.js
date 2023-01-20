@@ -107,20 +107,20 @@ function LanguageSet(LanguageID)
 		LanguageString[1] = "The file extension don't match.";
 		LanguageString[2] = "The file size requires less than 10 MB.";
 		LanguageString[3] = "Loading file...";
-		LanguageString[4] = "Processing finished.";
-		LanguageString[5] = "Processing is done again.";
-		LanguageString[6] = "Processing failed! The contents of the file may be incorrect.";
+		LanguageString[4] = "The conversion is completed.";
+		LanguageString[5] = "The conversion is done again.";
+		LanguageString[6] = "The conversion is failed! The file contents may incorrectly.";
 		LanguageString[7] = "Click here to select a file<br /><br />or drag a file on page to start";
 		LanguageString[8] = "Font Size: ";
 		LanguageString[9] = "Spacing: ";
 		LanguageString[10] = "Vertical Offset: ";
 		LanguageString[11] = "Line Spacing: ";
-		LanguageString[12] = "Restart";
-		LanguageString[13] = "Copy All";
-		LanguageString[14] = "Save File";
+		LanguageString[12] = "Reconvert";
+		LanguageString[13] = "Copy Contents";
+		LanguageString[14] = "Save As";
 		LanguageString[15] = "The contents already copied to clipboard.";
 		LanguageString[16] = "The file 'font_data.xml' has started download to your device.";
-		LanguageString[17] = "Processing...";
+		LanguageString[17] = "Converting...";
 		LanguageString[18] = "Default";
 	}
 }
